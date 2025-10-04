@@ -1,0 +1,2262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sprouts - Elevate Your Plant Care Experience</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-green: #345B49;
+            --cream: #FFF8E1;
+            --light-cream: #FFECB3;
+            --gold: #FFE082;
+            --gray: #848C8C;
+        }
+
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--cream);
+            color: var(--primary-green);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Advanced Background System */
+        .bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.4;
+        }
+
+        .mesh-gradient {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(52, 91, 73, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 224, 130, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(255, 236, 179, 0.15) 0%, transparent 50%);
+            animation: mesh-move 20s ease-in-out infinite;
+        }
+
+        @keyframes mesh-move {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.05); }
+            66% { transform: translate(-20px, 20px) scale(0.95); }
+        }
+
+        /* Premium Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 15px 60px;
+            background: rgba(255, 248, 225, 0.85);
+            backdrop-filter: blur(30px) saturate(180%);
+            z-index: 10000;
+            border-bottom: 1px solid rgba(52, 91, 73, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 10px 60px;
+            background: rgba(255, 248, 225, 0.95);
+            box-shadow: 0 10px 40px rgba(52, 91, 73, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-section:hover {
+            transform: scale(1.02);
+        }
+
+        .logo-container {
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, var(--primary-green) 0%, #4a7a5f 100%);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 24px rgba(52, 91, 73, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-container::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: logo-shine 3s ease-in-out infinite;
+        }
+
+        @keyframes logo-shine {
+            0% { transform: rotate(0deg) translate(-50%, -50%); }
+            100% { transform: rotate(360deg) translate(-50%, -50%); }
+        }
+
+        .logo-placeholder {
+            font-size: 28px;
+            z-index: 1;
+        }
+
+        .brand-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .brand-name {
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, var(--primary-green), #4a7a5f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .brand-subtitle {
+            font-size: 11px;
+            color: var(--gray);
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--primary-green);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 0.3px;
+            position: relative;
+            padding: 8px 0;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--primary-green);
+            transform: translateX(-50%);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::before {
+            width: 100%;
+        }
+
+        .nav-cta {
+            padding: 12px 32px;
+            background: var(--primary-green);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 24px rgba(52, 91, 73, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(52, 91, 73, 0.35);
+        }
+
+        .nav-cta:hover::before {
+            left: 100%;
+        }
+
+        /* Hero Section - Ultra Premium */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 140px 80px 100px;
+            gap: 100px;
+            position: relative;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .hero-content {
+            flex: 1;
+            max-width: 650px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 24px;
+            background: linear-gradient(135deg, rgba(52, 91, 73, 0.08), rgba(52, 91, 73, 0.12));
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary-green);
+            margin-bottom: 32px;
+            border: 1px solid rgba(52, 91, 73, 0.15);
+            animation: slideDown 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .pulse-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--primary-green);
+            border-radius: 50%;
+            animation: pulse-ring 2s ease-out infinite;
+            position: relative;
+        }
+
+        .pulse-dot::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border: 2px solid var(--primary-green);
+            border-radius: 50%;
+            animation: pulse-ring 2s ease-out infinite;
+        }
+
+        @keyframes pulse-ring {
+            0% { opacity: 1; transform: scale(0.8); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+            100% { opacity: 0; transform: scale(1.5); }
+        }
+
+        .hero h1 {
+            font-size: 68px;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 28px;
+            letter-spacing: -2px;
+            background: linear-gradient(135deg, var(--primary-green) 0%, #4a7a5f 50%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: slideDown 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s backwards;
+        }
+
+        .hero-description {
+            font-size: 20px;
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 42px;
+            animation: slideDown 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.4s backwards;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 18px;
+            align-items: center;
+            animation: slideDown 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.6s backwards;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            padding: 18px 48px;
+            background: var(--primary-green);
+            color: white;
+            border: none;
+            border-radius: 40px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 12px 32px rgba(52, 91, 73, 0.3);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.3px;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-primary:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 48px rgba(52, 91, 73, 0.4);
+        }
+
+        .btn-secondary {
+            padding: 18px 48px;
+            background: transparent;
+            color: var(--primary-green);
+            border: 2px solid var(--primary-green);
+            border-radius: 40px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.3px;
+        }
+
+        .btn-secondary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-green);
+            transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: -1;
+        }
+
+        .btn-secondary:hover::before {
+            left: 0;
+        }
+
+        .btn-secondary:hover {
+            color: white;
+            border-color: var(--primary-green);
+            transform: translateY(-3px);
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+            animation: slideDown 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.8s backwards;
+        }
+
+        .stat-box {
+            text-align: left;
+        }
+
+        .stat-value {
+            font-size: 48px;
+            font-weight: 900;
+            color: var(--primary-green);
+            line-height: 1;
+            margin-bottom: 8px;
+            letter-spacing: -1px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--gray);
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        /* Hero Visual - Premium Phone Mockup */
+        .hero-visual {
+            flex: 1;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeInScale 1s cubic-bezier(0.4, 0, 0.2, 1) 0.4s backwards;
+        }
+
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .phone-container {
+            position: relative;
+            width: 100%;
+            max-width: 420px;
+        }
+
+        .phone-mockup {
+            width: 100%;
+            aspect-ratio: 9/19.5;
+            background: linear-gradient(135deg, var(--primary-green) 0%, #4a7a5f 100%);
+            border-radius: 48px;
+            padding: 16px;
+            box-shadow: 
+                0 40px 100px rgba(52, 91, 73, 0.4),
+                0 20px 60px rgba(52, 91, 73, 0.3),
+                inset 0 2px 0 rgba(255, 255, 255, 0.3);
+            position: relative;
+            animation: float-device 6s ease-in-out infinite;
+        }
+
+        @keyframes float-device {
+            0%, 100% { transform: translateY(0) rotateY(-5deg) rotateX(2deg); }
+            50% { transform: translateY(-30px) rotateY(5deg) rotateX(-2deg); }
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: var(--light-cream);
+            border-radius: 38px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .screen-content {
+            text-align: center;
+            color: var(--gray);
+            padding: 40px;
+        }
+
+        .screen-icon {
+            font-size: 72px;
+            margin-bottom: 16px;
+            animation: bounce-slow 3s ease-in-out infinite;
+        }
+
+        @keyframes bounce-slow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* Floating Elements */
+        .float-decoration {
+            position: absolute;
+            opacity: 0.12;
+            pointer-events: none;
+        }
+
+        .float-1 {
+            top: 5%;
+            left: -80px;
+            font-size: 120px;
+            animation: float-lr 20s ease-in-out infinite;
+        }
+
+        .float-2 {
+            bottom: 10%;
+            right: -100px;
+            font-size: 140px;
+            animation: float-rl 25s ease-in-out infinite;
+        }
+
+        .float-3 {
+            top: 50%;
+            left: -60px;
+            font-size: 80px;
+            animation: float-ud 18s ease-in-out infinite;
+        }
+
+        @keyframes float-lr {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(30px, -30px) rotate(10deg); }
+        }
+
+        @keyframes float-rl {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-40px, 20px) rotate(-10deg); }
+        }
+
+        @keyframes float-ud {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-40px) rotate(5deg); }
+        }
+
+        /* Mascot Section - Classy Design */
+        .mascot-section {
+            padding: 140px 80px;
+            background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.6) 50%, transparent 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mascot-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            align-items: center;
+        }
+
+        .mascot-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .mascot-circle {
+            width: 550px;
+            height: 550px;
+            background: linear-gradient(135deg, var(--light-cream) 0%, var(--gold) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 
+                0 40px 100px rgba(52, 91, 73, 0.2),
+                inset 0 2px 40px rgba(255, 255, 255, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mascot-circle::before {
+            content: '';
+            position: absolute;
+            inset: -50%;
+            background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: rotate-gradient 8s linear infinite;
+        }
+
+        @keyframes rotate-gradient {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .mascot-placeholder {
+            font-size: 220px;
+            z-index: 1;
+            filter: drop-shadow(0 20px 40px rgba(52, 91, 73, 0.3));
+            animation: bounce-slow 4s ease-in-out infinite;
+        }
+
+        .mascot-content {
+            padding-left: 20px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(52, 91, 73, 0.08);
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--primary-green);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            border: 1px solid rgba(52, 91, 73, 0.1);
+        }
+
+        .section-title {
+            font-size: 52px;
+            font-weight: 900;
+            color: var(--primary-green);
+            line-height: 1.15;
+            margin-bottom: 28px;
+            letter-spacing: -1.5px;
+        }
+
+        .section-text {
+            font-size: 18px;
+            color: var(--gray);
+            line-height: 1.9;
+            margin-bottom: 20px;
+        }
+
+        /* Features Section - Modern Grid */
+        .features-section {
+            padding: 140px 80px;
+            background: white;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 80px;
+        }
+
+        .section-subtitle {
+            font-size: 19px;
+            color: var(--gray);
+            line-height: 1.8;
+            margin-top: 20px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 32px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .feature-item {
+            padding: 48px;
+            background: linear-gradient(135deg, var(--cream) 0%, rgba(255, 236, 179, 0.5) 100%);
+            border-radius: 28px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(52, 91, 73, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-item::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .feature-item:hover::before {
+            opacity: 1;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 32px 72px rgba(52, 91, 73, 0.2);
+            border-color: var(--primary-green);
+        }
+
+        .feature-icon {
+            width: 84px;
+            height: 84px;
+            background: linear-gradient(135deg, var(--primary-green) 0%, #4a7a5f 100%);
+            border-radius: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 42px;
+            margin-bottom: 28px;
+            box-shadow: 0 12px 32px rgba(52, 91, 73, 0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .feature-item:hover .feature-icon {
+            transform: scale(1.1) rotate(-8deg);
+        }
+
+        .feature-title {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--primary-green);
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .feature-description {
+            font-size: 16px;
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        /* Screenshots Gallery - Premium Carousel */
+        .screenshots-section {
+            padding: 140px 80px;
+            background: linear-gradient(180deg, var(--cream) 0%, var(--light-cream) 100%);
+        }
+
+        .screenshots-carousel {
+            display: flex;
+            gap: 32px;
+            overflow-x: auto;
+            padding: 60px 0;
+            scroll-behavior: smooth;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-green) rgba(52, 91, 73, 0.1);
+        }
+
+        .screenshots-carousel::-webkit-scrollbar {
+            height: 10px;
+        }
+
+        .screenshots-carousel::-webkit-scrollbar-track {
+            background: rgba(52, 91, 73, 0.08);
+            border-radius: 10px;
+        }
+
+        .screenshots-carousel::-webkit-scrollbar-thumb {
+            background: var(--primary-green);
+            border-radius: 10px;
+            transition: background 0.3s;
+        }
+
+        .screenshots-carousel::-webkit-scrollbar-thumb:hover {
+            background: #4a7a5f;
+        }
+
+        .screenshot-item {
+            min-width: 340px;
+            aspect-ratio: 9/19.5;
+            background: white;
+            border-radius: 40px;
+            box-shadow: 0 20px 60px rgba(52, 91, 73, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 48px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            scroll-snap-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .screenshot-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--primary-green), transparent);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .screenshot-item:hover::after {
+            opacity: 0.03;
+        }
+
+        .screenshot-item:hover {
+            transform: scale(1.08) translateY(-12px);
+            box-shadow: 0 32px 80px rgba(52, 91, 73, 0.3);
+        }
+
+        .screenshot-placeholder-icon {
+            font-size: 80px;
+            margin-bottom: 24px;
+            animation: bounce-slow 2.5s ease-in-out infinite;
+            position: relative;
+            z-index: 1;
+        }
+
+        .screenshot-label {
+            font-size: 16px;
+            color: var(--gray);
+            font-weight: 600;
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .upload-btn {
+            padding: 14px 32px;
+            background: var(--primary-green);
+            color: white;
+            border: none;
+            border-radius: 28px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            z-index: 1;
+            letter-spacing: 0.3px;
+        }
+
+        .upload-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 32px rgba(52, 91, 73, 0.3);
+        }
+
+        /* Testimonials - Premium Cards */
+        .testimonials-section {
+            padding: 140px 80px;
+            background: white;
+            position: relative;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 32px;
+            max-width: 1400px;
+            margin: 80px auto 0;
+        }
+
+        .testimonial-item {
+            padding: 48px;
+            background: linear-gradient(135deg, var(--cream) 0%, white 100%);
+            border-radius: 28px;
+            box-shadow: 0 12px 40px rgba(52, 91, 73, 0.08);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(52, 91, 73, 0.06);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-item::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 200px;
+            color: rgba(52, 91, 73, 0.03);
+            font-family: Georgia, serif;
+            line-height: 0.8;
+        }
+
+        .testimonial-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 24px 60px rgba(52, 91, 73, 0.15);
+        }
+
+        .stars-rating {
+            color: var(--gold);
+            font-size: 22px;
+            margin-bottom: 24px;
+            letter-spacing: 4px;
+            text-shadow: 0 2px 8px rgba(255, 224, 130, 0.3);
+        }
+
+        .testimonial-quote {
+            font-size: 17px;
+            line-height: 1.8;
+            color: var(--gray);
+            margin-bottom: 32px;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author-section {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .author-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-green), var(--gold));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 8px 24px rgba(52, 91, 73, 0.2);
+        }
+
+        .author-details {
+            flex: 1;
+        }
+
+        .author-name {
+            font-weight: 800;
+            color: var(--primary-green);
+            font-size: 17px;
+            margin-bottom: 4px;
+            letter-spacing: -0.3px;
+        }
+
+        .author-title {
+            font-size: 14px;
+            color: var(--gray);
+            font-weight: 500;
+        }
+
+        /* FAQ Section - Accordion Style */
+        .faq-section {
+            padding: 140px 80px;
+            background: linear-gradient(180deg, var(--light-cream) 0%, var(--cream) 100%);
+            position: relative;
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 80px auto 0;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(52, 91, 73, 0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(52, 91, 73, 0.06);
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 8px 32px rgba(52, 91, 73, 0.12);
+        }
+
+        .faq-question {
+            padding: 32px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .faq-question:hover {
+            background: rgba(52, 91, 73, 0.02);
+        }
+
+        .faq-question h3 {
+            font-size: 19px;
+            font-weight: 700;
+            color: var(--primary-green);
+            margin: 0;
+            padding-right: 20px;
+            letter-spacing: -0.3px;
+        }
+
+        .faq-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--primary-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            transition: transform 0.3s;
+            flex-shrink: 0;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+            background: var(--gold);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .faq-answer-content {
+            padding: 0 40px 32px;
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--gray);
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        /* Stats Section - Premium Design */
+        .stats-section {
+            padding: 140px 80px;
+            background: var(--primary-green);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+            animation: rotate-gradient 20s linear infinite;
+        }
+
+        .stats-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 48px;
+            max-width: 1200px;
+            margin: 80px auto 0;
+        }
+
+        .stat-card {
+            padding: 48px 32px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .stat-card-icon {
+            font-size: 64px;
+            margin-bottom: 24px;
+            filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.2));
+        }
+
+        .stat-number {
+            font-size: 56px;
+            font-weight: 900;
+            margin-bottom: 12px;
+            line-height: 1;
+            letter-spacing: -2px;
+        }
+
+        .stat-text {
+            font-size: 17px;
+            opacity: 0.95;
+            font-weight: 500;
+        }
+
+        /* Download Section - App Store Buttons */
+        .download-section {
+            padding: 140px 80px;
+            background: linear-gradient(135deg, var(--light-cream) 0%, var(--gold) 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(52,91,73,0.1)"/></svg>');
+            opacity: 0.5;
+        }
+
+        .download-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+
+        .store-buttons-container {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            margin-top: 48px;
+            flex-wrap: wrap;
+        }
+
+        .store-btn {
+            padding: 20px 48px;
+            background: var(--primary-green);
+            color: white;
+            border: none;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 12px 32px rgba(52, 91, 73, 0.3);
+        }
+
+        .store-btn:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 48px rgba(52, 91, 73, 0.4);
+        }
+
+        .store-btn-icon {
+            font-size: 36px;
+        }
+
+        .store-btn-text {
+            text-align: left;
+        }
+
+        .store-btn-label {
+            font-size: 12px;
+            opacity: 0.9;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .store-btn-name {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+        }
+
+        /* Newsletter Section - Elegant Form */
+        .newsletter-section {
+            padding: 120px 80px;
+            background: white;
+            text-align: center;
+        }
+
+        .newsletter-box {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 16px;
+            margin-top: 48px;
+            background: var(--cream);
+            padding: 12px;
+            border-radius: 60px;
+            box-shadow: 0 8px 32px rgba(52, 91, 73, 0.1);
+            transition: all 0.3s;
+        }
+
+        .newsletter-form:focus-within {
+            box-shadow: 0 12px 48px rgba(52, 91, 73, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .newsletter-email {
+            flex: 1;
+            padding: 20px 32px;
+            border: none;
+            background: transparent;
+            font-size: 16px;
+            outline: none;
+            color: var(--primary-green);
+        }
+
+        .newsletter-email::placeholder {
+            color: var(--gray);
+            opacity: 0.6;
+        }
+
+        .newsletter-submit {
+            padding: 20px 48px;
+            background: var(--primary-green);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+            letter-spacing: 0.3px;
+        }
+
+        .newsletter-submit:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 24px rgba(52, 91, 73, 0.3);
+        }
+
+        /* How It Works Section */
+        .how-it-works {
+            padding: 140px 80px;
+            background: linear-gradient(180deg, white 0%, var(--cream) 100%);
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 48px;
+            max-width: 1400px;
+            margin: 80px auto 0;
+        }
+
+        .step-item {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-green), #4a7a5f);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            font-weight: 900;
+            color: white;
+            margin: 0 auto 32px;
+            box-shadow: 0 12px 32px rgba(52, 91, 73, 0.3);
+            position: relative;
+        }
+
+        .step-number::before {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            border: 2px dashed var(--primary-green);
+            border-radius: 50%;
+            opacity: 0.3;
+        }
+
+        .step-item h3 {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary-green);
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .step-item p {
+            font-size: 16px;
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        /* Footer - Premium Design */
+        footer {
+            padding: 100px 80px 48px;
+            background: var(--primary-green);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 80px;
+            max-width: 1400px;
+            margin: 0 auto 80px;
+        }
+
+        .footer-brand-section {
+            padding-right: 40px;
+        }
+
+        .footer-logo-box {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .footer-logo {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .footer-brand-name {
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+        }
+
+        .footer-description {
+            font-size: 15px;
+            line-height: 1.8;
+            opacity: 0.9;
+            margin-bottom: 32px;
+        }
+
+        .social-links-container {
+            display: flex;
+            gap: 16px;
+        }
+
+        .social-link-btn {
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            cursor: pointer;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .social-link-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-4px);
+        }
+
+        .footer-column h4 {
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 28px;
+            letter-spacing: -0.3px;
+        }
+
+        .footer-links-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .footer-link {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .footer-link:hover {
+            color: white;
+            transform: translateX(4px);
+        }
+
+        .footer-bottom-bar {
+            padding-top: 48px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            opacity: 0.8;
+        }
+
+        .footer-copyright {
+            font-size: 14px;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 32px;
+        }
+
+        .footer-legal a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .footer-legal a:hover {
+            color: white;
+        }
+
+        /* Scroll to Top Button */
+        .scroll-top {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            width: 56px;
+            height: 56px;
+            background: var(--primary-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s;
+            box-shadow: 0 8px 24px rgba(52, 91, 73, 0.3);
+            z-index: 9999;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(52, 91, 73, 0.4);
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            width: 40px;
+            height: 40px;
+            background: var(--primary-green);
+            border-radius: 8px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .mobile-menu-toggle span {
+            width: 20px;
+            height: 2px;
+            background: white;
+            transition: all 0.3s;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translateY(7px);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translateY(-7px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .hero {
+                gap: 60px;
+            }
+
+            .mascot-wrapper {
+                gap: 60px;
+            }
+
+            .mascot-circle {
+                width: 450px;
+                height: 450px;
+            }
+
+            .mascot-placeholder {
+                font-size: 180px;
+            }
+        }
+
+        @media (max-width: 968px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .hero {
+                flex-direction: column;
+                padding: 120px 40px 80px;
+                gap: 50px;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .hero-stats {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 24px;
+            }
+
+            .mascot-wrapper {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .mascot-circle {
+                width: 380px;
+                height: 380px;
+            }
+
+            .mascot-placeholder {
+                font-size: 150px;
+            }
+
+            .features-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 48px;
+            }
+
+            .footer-brand-section {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .navbar {
+                padding: 12px 24px;
+            }
+
+            .nav-container {
+                padding: 0;
+            }
+
+            .hero,
+            .mascot-section,
+            .features-section,
+            .screenshots-section,
+            .testimonials-section,
+            .faq-section,
+            .stats-section,
+            .download-section,
+            .newsletter-section,
+            .how-it-works,
+            footer {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero-description {
+                font-size: 17px;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .mascot-circle {
+                width: 280px;
+                height: 280px;
+            }
+
+            .mascot-placeholder {
+                font-size: 100px;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+                border-radius: 24px;
+            }
+
+            .newsletter-submit {
+                width: 100%;
+            }
+
+            .store-buttons-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .store-btn {
+                justify-content: center;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom-bar {
+                flex-direction: column;
+                gap: 24px;
+                text-align: center;
+            }
+
+            .scroll-top {
+                bottom: 24px;
+                right: 24px;
+                width: 48px;
+                height: 48px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Effects -->
+    <canvas class="bg-canvas"></canvas>
+    <div class="mesh-gradient"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo-section">
+                <div class="logo-container">
+                    <div class="logo-placeholder">🌱</div>
+                </div>
+                <div class="brand-info">
+                    <div class="brand-name">Sprouts</div>
+                    <div class="brand-subtitle">Plant Care Excellence</div>
+                </div>
+            </div>
+            <div class="nav-menu">
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#how-it-works" class="nav-link">How It Works</a>
+                <a href="#testimonials" class="nav-link">Reviews</a>
+                <a href="#faq" class="nav-link">FAQ</a>
+                <a href="#download" class="nav-link">Download</a>
+            </div>
+            <button class="nav-cta">Get Started Free</button>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="pulse-dot"></span>
+                Over 50,000 Happy Plant Parents
+            </div>
+            <h1>Transform Your Space Into a Thriving Garden</h1>
+            <p class="hero-description">Experience the future of plant care with AI-powered reminders, expert guidance, and a supportive community. Watch your plants flourish like never before.</p>
+            <div class="hero-actions">
+                <button class="btn-primary">Download for Free</button>
+                <button class="btn-secondary">Watch Demo Video</button>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-box">
+                    <div class="stat-value">50K+</div>
+                    <div class="stat-label">Active Users</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">100K+</div>
+                    <div class="stat-label">Plants Cared</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">4.9★</div>
+                    <div class="stat-label">App Rating</div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="float-decoration float-1">🌿</div>
+            <div class="float-decoration float-2">🌱</div>
+            <div class="float-decoration float-3">🍃</div>
+            <div class="phone-container">
+                <div class="phone-mockup">
+                    <div class="phone-screen">
+                        <div class="screen-content">
+                            <div class="screen-icon">📱</div>
+                            <div>Upload your hero screenshot here</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mascot Section -->
+    <section class="mascot-section">
+        <div class="mascot-wrapper">
+            <div class="mascot-visual">
+                <div class="mascot-circle">
+                    <div class="mascot-placeholder">🌿</div>
+                </div>
+            </div>
+            <div class="mascot-content">
+                <span class="section-tag">Meet Your Companion</span>
+                <h2 class="section-title">Your Personal Plant Care Guide</h2>
+                <p class="section-text">Meet Sprout, your charming plant care companion! With a wealth of botanical knowledge and endless enthusiasm, Sprout guides you through every step of your plant parenting journey.</p>
+                <p class="section-text">From perfectly timed watering reminders to expert troubleshooting advice, Sprout brings personality, wisdom, and joy to plant care. It's like having a green-thumbed friend in your pocket!</p>
+                <button class="btn-primary" style="margin-top: 24px;">Learn More About Sprout</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="section-header">
+            <span class="section-tag">Simple & Effective</span>
+            <h2 class="section-title">How Sprouts Works</h2>
+            <p class="section-subtitle">Get started in minutes and watch your plants thrive with our simple three-step process.</p>
+        </div>
+        <div class="steps-grid">
+            <div class="step-item">
+                <div class="step-number">1</div>
+                <h3>Add Your Plants</h3>
+                <p>Take a photo or search our extensive database of over 10,000 plant species. Add details about location and pot size for personalized care.</p>
+            </div>
+            <div class="step-item">
+                <div class="step-number">2</div>
+                <h3>Get Smart Reminders</h3>
+                <p>Receive intelligent notifications for watering, fertilizing, and seasonal care based on your plant's specific needs and local weather.</p>
+            </div>
+            <div class="step-item">
+                <div class="step-number">3</div>
+                <h3>Watch Them Flourish</h3>
+                <p>Track growth with photos, access expert tips anytime, and connect with our community of passionate plant lovers worldwide.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <div class="section-header">
+            <span class="section-tag">Powerful Features</span>
+            <h2 class="section-title">Everything Your Plants Deserve</h2>
+            <p class="section-subtitle">Comprehensive tools designed to make plant care effortless, effective, and incredibly enjoyable for everyone.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="feature-icon">💧</div>
+                <h3 class="feature-title">Smart Watering System</h3>
+                <p class="feature-description">AI-powered schedules that adapt to each plant's unique needs, soil type, weather conditions, and seasonal changes. Never over or underwater again.</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🌞</div>
+                <h3 class="feature-title">Light Optimization</h3>
+                <p class="feature-description">Advanced light tracking with recommendations for the perfect spot in your home. Ensure every plant gets its ideal sun exposure.</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">📚</div>
+                <h3 class="feature-title">Plant Encyclopedia</h3>
+                <p class="feature-description">Access detailed care guides for 10,000+ species. From rare tropicals to common houseplants, expert knowledge at your fingertips.</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🔔</div>
+                <h3 class="feature-title">Intelligent Notifications</h3>
+                <p class="feature-description">Custom reminders for watering, fertilizing, pruning, and repotting. Delivered at the perfect time, never miss a care task.</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">📊</div>
+                <h3 class="feature-title">Growth Analytics</h3>
+                <p class="feature-description">Track your plants' progress with photos, notes, and detailed growth metrics. Watch your garden flourish over time with beautiful visualizations.</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">👥</div>
+                <h3 class="feature-title">Thriving Community</h3>
+                <p class="feature-description">Connect with 50,000+ plant enthusiasts worldwide. Share tips, ask questions, and celebrate your green successes together.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screenshots Section -->
+    <section class="screenshots-section">
+        <div class="section-header">
+            <span class="section-tag">App Preview</span>
+            <h2 class="section-title">Beautiful Design, Powerful Features</h2>
+            <p class="section-subtitle">Explore our elegant interface designed to make plant care intuitive and delightful.</p>
+        </div>
+        <div class="screenshots-carousel">
+            <div class="screenshot-item">
+                <div class="screenshot-placeholder-icon">🏠</div>
+                <div class="screenshot-label">Dashboard View</div>
+                <button class="upload-btn">Upload Screenshot</button>
+            </div>
+            <div class="screenshot-item">
+                <div class="screenshot-placeholder-icon">🌱</div>
+                <div class="screenshot-label">Plant Details</div>
+                <button class="upload-btn">Upload Screenshot</button>
+            </div>
+            <div class="screenshot-item">
+                <div class="screenshot-placeholder-icon">📅</div>
+                <div class="screenshot-label">Care Calendar</div>
+                <button class="upload-btn">Upload Screenshot</button>
+            </div>
+            <div class="screenshot-item">
+                <div class="screenshot-placeholder-icon">📖</div>
+                <div class="screenshot-label">Plant Library</div>
+                <button class="upload-btn">Upload Screenshot</button>
+            </div>
+            <div class="screenshot-item">
+                <div class="screenshot-placeholder-icon">📸</div>
+                <div class="screenshot-label">Growth Tracking</div>
+                <button class="upload-btn">Upload Screenshot</button>
+            </div>
+            <div class="screenshot-item">
+                <div class="screenshot-placeholder-icon">👥</div>
+                <div class="screenshot-label">Community Feed</div>
+                <button class="upload-btn">Upload Screenshot</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section" id="testimonials">
+        <div class="section-header">
+            <span class="section-tag">User Reviews</span>
+            <h2 class="section-title">Loved by Plant Parents Everywhere</h2>
+            <p class="section-subtitle">Join thousands of happy users who transformed their spaces with Sprouts.</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-item">
+                <div class="stars-rating">★★★★★</div>
+                <p class="testimonial-quote">"Sprouts completely transformed my relationship with plants. The AI reminders are incredibly accurate, and I love how the app adapts to each plant's needs. My apartment has never looked greener!"</p>
+                <div class="testimonial-author-section">
+                    <div class="author-image">👩</div>
+                    <div class="author-details">
+                        <div class="author-name">Sarah Mitchell</div>
+                        <div class="author-title">Urban Gardener</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-item">
+                <div class="stars-rating">★★★★★</div>
+                <p class="testimonial-quote">"As a complete beginner, I was nervous about keeping plants alive. Sprouts made it so easy! The mascot is adorable, the guides are clear, and the community is incredibly supportive. Highly recommend!"</p>
+                <div class="testimonial-author-section">
+                    <div class="author-image">👨</div>
+                    <div class="author-details">
+                        <div class="author-name">Michael Chen</div>
+                        <div class="author-title">First-Time Plant Parent</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-item">
+                <div class="stars-rating">★★★★★</div>
+                <p class="testimonial-quote">"The plant encyclopedia is phenomenal! I've discovered so many new species and the care instructions are incredibly detailed. The growth tracking feature helps me see real progress. Worth every penny!"</p>
+                <div class="testimonial-author-section">
+                    <div class="author-image">👩</div>
+                    <div class="author-details">
+                        <div class="author-name">Emma Rodriguez</div>
+                        <div class="author-title">Botanical Enthusiast</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section" id="faq">
+        <div class="section-header">
+            <span class="section-tag">Questions & Answers</span>
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p class="section-subtitle">Everything you need to know about Sprouts and plant care.</p>
+        </div>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Is Sprouts free to use?</h3>
+                    <div class="faq-icon">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Yes! Sprouts offers a free version with core features including watering reminders, basic plant care guides, and access to our community. We also offer Sprouts Premium with advanced features like detailed analytics, unlimited plant profiles, AI plant identification, and ad-free experience for $4.99/month or $39.99/year.
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>How does the smart watering system work?</h3>
+                    <div class="faq-icon">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Our AI-powered system considers multiple factors including plant species, pot size, soil type, local weather conditions, season, and your home environment. It learns from your input and adjusts reminders to ensure optimal watering schedules. You'll receive notifications at the perfect time, preventing both overwatering and underwatering.
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Can I identify plants using the app?</h3>
+                    <div class="faq-icon">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Absolutely! With Sprouts Premium, you can use our AI-powered plant identification feature. Simply take a photo of any plant, and our advanced recognition system will identify it from our database of over 10,000 species. You'll instantly receive detailed care instructions and can add it to your collection with one tap.
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What if I travel and can't water my plants?</h3>
+                    <div class="faq-icon">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Sprouts includes a "Travel Mode" feature! Before you leave, activate travel mode and specify your travel dates. The app will provide pre-travel care instructions, suggest which plants need extra attention, and can even recommend self-watering solutions. You can also share temporary access with friends or family who'll help care for your plants while you're away.
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Does Sprouts work offline?</h3>
+                    <div class="faq-icon">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Yes! Once you've added your plants and downloaded their care guides, you can access basic features offline including viewing your plant collection, care schedules, and saved guides. Reminders will still function offline. However, features like plant identification, community access, and weather-based updates require an internet connection.
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>How do I cancel my Premium subscription?</h3>
+                    <div class="faq-icon">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        You can cancel anytime directly from your device's subscription settings (App Store or Google Play). Your Premium features will remain active until the end of your billing period, and you won't be charged again. Even after canceling, you'll keep all your plant data and can continue using the free version of Sprouts.
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Is my plant data backed up?</h3>
+                    <div class="faq-icon">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Yes! All your plant data, photos, notes, and care history are automatically backed up to the cloud. If you switch devices or reinstall the app, simply log in with your account and everything will be restored. We use encrypted storage to ensure your data is secure and private.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="stats-wrapper">
+            <div class="section-header">
+                <h2 class="section-title" style="color: white;">Growing Together Worldwide</h2>
+                <p class="section-subtitle" style="color: rgba(255,255,255,0.95);">Join a thriving global community of plant lovers making the world greener, one leaf at a time.</p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-card-icon">👥</div>
+                    <div class="stat-number">50K+</div>
+                    <div class="stat-text">Active Users</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-icon">🌱</div>
+                    <div class="stat-number">100K+</div>
+                    <div class="stat-text">Plants Thriving</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-icon">⭐</div>
+                    <div class="stat-number">4.9</div>
+                    <div class="stat-text">Average Rating</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-icon">🏆</div>
+                    <div class="stat-number">15+</div>
+                    <div class="stat-text">Awards Won</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section class="download-section" id="download">
+        <div class="download-wrapper">
+            <span class="section-tag" style="color: var(--primary-green);">Get Started Today</span>
+            <h2 class="section-title">Start Your Plant Journey</h2>
+            <p class="section-subtitle">Available on iOS and Android. Download now and get your first month of Premium free!</p>
+            <div class="store-buttons-container">
+                <button class="store-btn">
+                    <div class="store-btn-icon">🍎</div>
+                    <div class="store-btn-text">
+                        <span class="store-btn-label">Download on the</span>
+                        <div class="store-btn-name">App Store</div>
+                    </div>
+                </button>
+                <button class="store-btn">
+                    <div class="store-btn-icon">📱</div>
+                    <div class="store-btn-text">
+                        <span class="store-btn-label">Get it on</span>
+                        <div class="store-btn-name">Google Play</div>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="newsletter-box">
+            <span class="section-tag">Stay Connected</span>
+            <h2 class="section-title">Get Expert Plant Care Tips</h2>
+            <p class="section-subtitle">Subscribe to receive weekly tips, seasonal guides, exclusive offers, and early access to new features.</p>
+            <form class="newsletter-form">
+                <input type="email" class="newsletter-email" placeholder="Enter your email address" required>
+                <button type="submit" class="newsletter-submit">Subscribe Now</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand-section">
+                <div class="footer-logo-box">
+                    <div class="footer-logo">🌱</div>
+                    <div class="footer-brand-name">Sprouts</div>
+                </div>
+                <p class="footer-description">Your trusted companion for nurturing beautiful, healthy plants. Making plant care accessible, enjoyable, and rewarding for everyone, everywhere.</p>
+                <div class="social-links-container">
+                    <div class="social-link-btn">📘</div>
+                    <div class="social-link-btn">📷</div>
+                    <div class="social-link-btn">🐦</div>
+                    <div class="social-link-btn">▶️</div>
+                    <div class="social-link-btn">💬</div>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Product</h4>
+                <div class="footer-links-list">
+                    <a href="#features" class="footer-link">Features</a>
+                    <a href="#" class="footer-link">Pricing</a>
+                    <a href="#" class="footer-link">Premium</a>
+                    <a href="#" class="footer-link">Updates</a>
+                    <a href="#" class="footer-link">Roadmap</a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Support</h4>
+                <div class="footer-links-list">
+                    <a href="#" class="footer-link">Help Center</a>
+                    <a href="#" class="footer-link">Contact Us</a>
+                    <a href="#faq" class="footer-link">FAQ</a>
+                    <a href="#" class="footer-link">Community</a>
+                    <a href="#" class="footer-link">Tutorials</a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Company</h4>
+                <div class="footer-links-list">
+                    <a href="#" class="footer-link">About Us</a>
+                    <a href="#" class="footer-link">Blog</a>
+                    <a href="#" class="footer-link">Careers</a>
+                    <a href="#" class="footer-link">Press Kit</a>
+                    <a href="#" class="footer-link">Partners</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom-bar">
+            <div class="footer-copyright">© 2025 Sprouts. All rights reserved. Made with 💚 for plant lovers.</div>
+            <div class="footer-legal">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Cookie Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" id="scrollTop">↑</div>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                
+                // Close all items
+                faqItems.forEach(i => i.classList.remove('active'));
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Scroll to top button
+        const scrollTopBtn = document.getElementById('scrollTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Animate elements on scroll
+        document.querySelectorAll('.feature-item, .testimonial-item, .stat-card, .screenshot-item, .step-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(40px)';
+            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(el);
+        });
+
+        // Newsletter form submission
+        document.querySelector('.newsletter-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for subscribing! 🌱 Check your email for confirmation.');
+            e.target.reset();
+        });
+
+        // Mobile menu toggle
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        mobileMenuToggle.addEventListener('click', () => {
+            mobileMenuToggle.classList.toggle('active');
+            navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Canvas background animation
+        const canvas = document.querySelector('.bg-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        
+        const particles = [];
+        const particleCount = 50;
+        
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3 + 1;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+                this.opacity = Math.random() * 0.3;
+            }
+            
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+            
+            draw() {
+                ctx.fillStyle = `rgba(52, 91, 73, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+        
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+        
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+            
+            requestAnimationFrame(animate);
+        }
+        
+        animate();
+
+        // Add hover effect to store buttons
+        document.querySelectorAll('.store-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                alert('App coming soon! Sign up for our newsletter to be notified at launch. 🌱');
+            });
+        });
+    </script>
+</body>
+</html>
