@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Mobile App Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2dd4bf;
+            --primary-dark: #0d9488;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --bg-primary: #ffffff;
+            --bg-secondary: #fafafa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--bg-secondary);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+            background: var(--bg-primary);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .last-updated {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .content {
+            background: var(--bg-primary);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: var(--primary-dark);
+            margin: 2rem 0 1rem;
+            font-size: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        ul {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            color: var(--text-secondary);
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 2rem 0;
+            color: var(--text-secondary);
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Privacy Policy</h1>
+            <p class="last-updated">Last Updated: October 19, 2025</p>
+        </header>
+
+        <main class="content">
+            <p>This Privacy Policy describes how we collect, use, and handle your personal information when you use our mobile applications.</p>
+
+            <h2>Information We Collect</h2>
+            <p>We collect several different types of information for various purposes:</p>
+            <ul>
+                <li><strong>Personal Data:</strong> Name, email address, phone number, and profile information</li>
+                <li><strong>Usage Data:</strong> App features used, interaction time, and performance data</li>
+                <li><strong>Device Information:</strong> Device type, operating system, unique device identifiers</li>
+                <li><strong>Location Data:</strong> Geographic location (if permitted by user)</li>
+            </ul>
+
+            <h2>How We Use Your Information</h2>
+            <p>We use the collected information for:</p>
+            <ul>
+                <li>Providing and maintaining our services</li>
+                <li>Notifying you about changes to our app</li>
+                <li>Providing customer support</li>
+                <li>Analyzing usage to improve user experience</li>
+                <li>Detecting, preventing, and addressing technical issues</li>
+            </ul>
+
+            <h2>Data Security</h2>
+            <p>We implement appropriate security measures to protect against unauthorized access, alteration, disclosure, or destruction of your data. This includes:</p>
+            <ul>
+                <li>Encryption of data in transit and at rest</li>
+                <li>Regular security assessments</li>
+                <li>Access controls and authentication measures</li>
+                <li>Secure data storage practices</li>
+            </ul>
+
+            <h2>Third-Party Services</h2>
+            <p>Our applications may use third-party services that collect information. Key third-party services include:</p>
+            <ul>
+                <li>Analytics providers</li>
+                <li>Advertisement networks</li>
+                <li>Payment processors</li>
+                <li>Cloud service providers</li>
+            </ul>
+
+            <h2>Your Data Rights</h2>
+            <p>You have the right to:</p>
+            <ul>
+                <li>Access your personal data</li>
+                <li>Correct inaccurate data</li>
+                <li>Request deletion of your data</li>
+                <li>Withdraw consent for data processing</li>
+                <li>Export your data in a portable format</li>
+            </ul>
+
+            <h2>Children's Privacy</h2>
+            <p>Our services do not address anyone under the age of 13. We do not knowingly collect personal information from children under 13. If you are a parent or guardian and you are aware that your child has provided us with personal information, please contact us.</p>
+
+            <h2>Changes to This Policy</h2>
+            <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date.</p>
+
+            <h2>Contact Us</h2>
+            <p>If you have any questions about this Privacy Policy, please contact us:</p>
+            <ul>
+                <li>By email: privacy@example.com</li>
+                <li>By phone: +1 (555) 123-4567</li>
+                <li>By mail: 123 Privacy Street, Tech City, TC 12345</li>
+            </ul>
+        </main>
+
+        <footer class="footer">
+            <p>Return to <a href="index.html">Home</a></p>
+        </footer>
+    </div>
+</body>
+</html>
