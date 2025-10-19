@@ -3,1702 +3,2261 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sprouts - Elevate Your Plant Care Experience</title>
+    <title>DevStudio - Shahid</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Professional mobile app developer with multiple published apps on App Store and Google Play Store. iOS & Android development expertise.">
+    <meta name="keywords" content="mobile developer, iOS developer, Android developer, app development, React Native, Flutter">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Animate.css for animations -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    
     <style>
+        /* CSS Variables */
+        :root {
+            /* Modern Sophisticated Color Palette */
+            --primary-color: #2dd4bf;         /* Teal */
+            --primary-dark: #0d9488;          /* Dark Teal */
+            --primary-light: #5eead4;         /* Light Teal */
+            --secondary-color: #c084fc;       /* Purple */
+            --accent-color: #f0abfc;          /* Pink */
+            --success-color: #34d399;         /* Green */
+            
+            /* Background Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #fafafa;
+            --bg-dark: #0f172a;               /* Dark Blue */
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            
+            /* Text Colors */
+            --text-primary: #0f172a;          /* Dark Blue */
+            --text-secondary: #475569;        /* Slate */
+            --text-light: #94a3b8;            /* Light Slate */
+            
+            /* Glass Effects */
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.12);
+            
+            /* Shadows */
+            --shadow-light: 0 4px 6px -1px rgba(15, 23, 42, 0.05);
+            --shadow-medium: 0 10px 15px -3px rgba(15, 23, 42, 0.08);
+            --shadow-heavy: 0 25px 50px -12px rgba(15, 23, 42, 0.15);
+            --border-radius: 12px;
+            --border-radius-lg: 20px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            --gradient-secondary: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+        }
+
+        /* Dark mode variables */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --text-primary: #f8fafc;
+                --text-secondary: #e2e8f0;
+                --text-light: #cbd5e1;
+                --bg-primary: #0f172a;
+                --bg-secondary: #1e293b;
+                --primary-color: #5eead4;
+                --primary-dark: #2dd4bf;
+                --primary-light: #99f6e4;
+                --secondary-color: #d8b4fe;
+                --accent-color: #f9a8d4;
+                --glass-bg: rgba(15, 23, 42, 0.3);
+                --glass-border: rgba(255, 255, 255, 0.05);
+            }
+        }
+
+        /* Reset and Base Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        :root {
-            --primary-green: #345B49;
-            --cream: #FFF8E1;
-            --light-cream: #FFECB3;
-            --gold: #FFE082;
-            --gray: #848C8C;
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
         }
 
         body {
-            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--cream);
-            color: var(--primary-green);
-            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* Advanced Background System */
-        .bg-canvas {
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Interactive Starfield */
+        #particles-container {
             position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            overflow: hidden;
+        }
+
+        #starfield {
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
-            opacity: 0.4;
         }
 
-        .mesh-gradient {
+        /* Interactive Starfield */
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: twinkle 3s infinite;
+        }
+
+        .star.small {
+            width: 2px;
+            height: 2px;
+            box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+        }
+
+        .star.medium {
+            width: 3px;
+            height: 3px;
+            box-shadow: 0 0 6px rgba(255, 255, 255, 0.9);
+        }
+
+        .star.large {
+            width: 4px;
+            height: 4px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 1), 0 0 20px rgba(45, 212, 191, 0.5);
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
+        }
+
+        /* Shooting stars */
+        .shooting-star {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: linear-gradient(45deg, #fff, rgba(45, 212, 191, 0.8));
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 1);
+            animation: shoot 3s linear infinite;
+        }
+
+        @keyframes shoot {
+            0% {
+                transform: translateX(-100px) translateY(-100px);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(100vw) translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+        /* Constellation lines */
+        .constellation-line {
+            position: absolute;
+            background: rgba(45, 212, 191, 0.7);
+            height: 2px;
+            transform-origin: left center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            box-shadow: 0 0 4px rgba(45, 212, 191, 0.5);
+        }
+
+        /* Cursor glow effect */
+        .cursor-glow {
             position: fixed;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(52, 91, 73, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(255, 224, 130, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 40% 20%, rgba(255, 236, 179, 0.15) 0%, transparent 50%);
-            animation: mesh-move 20s ease-in-out infinite;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(45, 212, 191, 0.3) 0%, rgba(45, 212, 191, 0.1) 50%, transparent 70%);
+            pointer-events: none;
+            z-index: 1;
+            transform: translate(-50%, -50%);
+            transition: opacity 0.3s ease;
         }
 
-        @keyframes mesh-move {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(30px, -30px) scale(1.05); }
-            66% { transform: translate(-20px, 20px) scale(0.95); }
-        }
-
-        /* Premium Navbar */
+        /* Navigation */
         .navbar {
             position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            padding: 15px 60px;
-            background: rgba(255, 248, 225, 0.85);
-            backdrop-filter: blur(30px) saturate(180%);
-            z-index: 10000;
-            border-bottom: 1px solid rgba(52, 91, 73, 0.08);
-            transition: all 0.3s ease;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            transition: var(--transition);
+            padding: 0.5rem 0;
         }
 
         .navbar.scrolled {
-            padding: 10px 60px;
-            background: rgba(255, 248, 225, 0.95);
-            box-shadow: 0 10px 40px rgba(52, 91, 73, 0.1);
+            background: rgba(15, 23, 42, 0.95);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(45, 212, 191, 0.2);
         }
 
         .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 0.75rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
-        .logo-section {
+        .nav-logo {
             display: flex;
             align-items: center;
-            gap: 15px;
-            cursor: pointer;
-            transition: transform 0.3s ease;
+            gap: 0.5rem;
         }
 
-        .logo-section:hover {
-            transform: scale(1.02);
-        }
-
-        .logo-container {
-            width: 55px;
-            height: 55px;
-            background: linear-gradient(135deg, var(--primary-green) 0%, #4a7a5f 100%);
-            border-radius: 14px;
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-primary);
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 8px 24px rgba(52, 91, 73, 0.25);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .logo-container::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
-            animation: logo-shine 3s ease-in-out infinite;
-        }
-
-        @keyframes logo-shine {
-            0% { transform: rotate(0deg) translate(-50%, -50%); }
-            100% { transform: rotate(360deg) translate(-50%, -50%); }
-        }
-
-        .logo-placeholder {
-            font-size: 28px;
-            z-index: 1;
-        }
-
-        .brand-info {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-
-        .brand-name {
-            font-size: 26px;
+            color: white;
+            font-size: 1.2rem;
             font-weight: 800;
-            letter-spacing: -0.5px;
-            background: linear-gradient(135deg, var(--primary-green), #4a7a5f);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
         }
 
-        .brand-subtitle {
-            font-size: 11px;
-            color: var(--gray);
-            font-weight: 500;
-            letter-spacing: 0.5px;
+        .logo-text {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: white;
+            letter-spacing: -0.5px;
+        }
+
+        .accent {
+            color: var(--primary-color);
         }
 
         .nav-menu {
             display: flex;
-            gap: 40px;
-            align-items: center;
+            list-style: none;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.5rem;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-menu li {
+            position: relative;
         }
 
         .nav-link {
-            color: var(--primary-green);
+            display: block;
             text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-            letter-spacing: 0.3px;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
             position: relative;
-            padding: 8px 0;
-            transition: color 0.3s ease;
+            font-size: 0.9rem;
+            letter-spacing: 0.3px;
         }
 
         .nav-link::before {
             content: '';
             position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
             bottom: 0;
-            left: 50%;
-            width: 0;
-            height: 2px;
-            background: var(--primary-green);
-            transform: translateX(-50%);
-            transition: width 0.3s ease;
+            background: var(--gradient-primary);
+            border-radius: 25px;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.3s ease;
+            z-index: -1;
         }
 
-        .nav-link:hover::before {
-            width: 100%;
+        .nav-link:hover,
+        .nav-link.active {
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        .nav-link:hover::before,
+        .nav-link.active::before {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
 
         .nav-cta {
-            padding: 12px 32px;
-            background: var(--primary-green);
+            background: var(--gradient-primary);
             color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition);
             border: none;
-            border-radius: 30px;
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 0.3px;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 8px 24px rgba(52, 91, 73, 0.25);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .nav-cta::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.5s;
+            box-shadow: 0 4px 15px rgba(45, 212, 191, 0.3);
         }
 
         .nav-cta:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 32px rgba(52, 91, 73, 0.35);
+            box-shadow: 0 8px 25px rgba(45, 212, 191, 0.4);
         }
 
-        .nav-cta:hover::before {
-            left: 100%;
+        .theme-toggle {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            transition: var(--transition);
         }
 
-        /* Hero Section - Ultra Premium */
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(180deg);
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .bar {
+            width: 20px;
+            height: 2px;
+            background: white;
+            margin: 2px 0;
+            transition: var(--transition);
+            border-radius: 1px;
+        }
+
+        /* Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding: 140px 80px 100px;
-            gap: 100px;
             position: relative;
-            max-width: 1600px;
-            margin: 0 auto;
-        }
-
-        .hero-content {
-            flex: 1;
-            max-width: 650px;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 24px;
-            background: linear-gradient(135deg, rgba(52, 91, 73, 0.08), rgba(52, 91, 73, 0.12));
-            border-radius: 50px;
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--primary-green);
-            margin-bottom: 32px;
-            border: 1px solid rgba(52, 91, 73, 0.15);
-            animation: slideDown 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            backdrop-filter: blur(10px);
-        }
-
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .pulse-dot {
-            width: 10px;
-            height: 10px;
-            background: var(--primary-green);
-            border-radius: 50%;
-            animation: pulse-ring 2s ease-out infinite;
-            position: relative;
-        }
-
-        .pulse-dot::before {
-            content: '';
-            position: absolute;
-            inset: -4px;
-            border: 2px solid var(--primary-green);
-            border-radius: 50%;
-            animation: pulse-ring 2s ease-out infinite;
-        }
-
-        @keyframes pulse-ring {
-            0% { opacity: 1; transform: scale(0.8); }
-            50% { opacity: 0.5; transform: scale(1.2); }
-            100% { opacity: 0; transform: scale(1.5); }
-        }
-
-        .hero h1 {
-            font-size: 68px;
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 28px;
-            letter-spacing: -2px;
-            background: linear-gradient(135deg, var(--primary-green) 0%, #4a7a5f 50%, var(--gold) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: slideDown 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s backwards;
-        }
-
-        .hero-description {
-            font-size: 20px;
-            color: var(--gray);
-            line-height: 1.8;
-            margin-bottom: 42px;
-            animation: slideDown 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.4s backwards;
-        }
-
-        .hero-actions {
-            display: flex;
-            gap: 18px;
-            align-items: center;
-            animation: slideDown 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.6s backwards;
-            flex-wrap: wrap;
-        }
-
-        .btn-primary {
-            padding: 18px 48px;
-            background: var(--primary-green);
-            color: white;
-            border: none;
-            border-radius: 40px;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 12px 32px rgba(52, 91, 73, 0.3);
-            position: relative;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--primary-dark) 100%);
             overflow: hidden;
-            letter-spacing: 0.3px;
         }
 
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-
-        .btn-primary:hover::before {
-            width: 400px;
-            height: 400px;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 16px 48px rgba(52, 91, 73, 0.4);
-        }
-
-        .btn-secondary {
-            padding: 18px 48px;
-            background: transparent;
-            color: var(--primary-green);
-            border: 2px solid var(--primary-green);
-            border-radius: 40px;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-            letter-spacing: 0.3px;
-        }
-
-        .btn-secondary::before {
+        .hero::before {
             content: '';
             position: absolute;
             top: 0;
-            left: -100%;
+            left: 0;
             width: 100%;
             height: 100%;
-            background: var(--primary-green);
-            transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: -1;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23ffffff" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
         }
 
-        .btn-secondary:hover::before {
-            left: 0;
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
         }
 
-        .btn-secondary:hover {
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            min-height: 80vh;
+        }
+
+        .hero-text {
             color: white;
-            border-color: var(--primary-green);
-            transform: translateY(-3px);
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .title-line {
+            display: block;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 500px;
         }
 
         .hero-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            margin-top: 60px;
-            animation: slideDown 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.8s backwards;
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
         }
 
-        .stat-box {
-            text-align: left;
+        .stat {
+            text-align: center;
         }
 
-        .stat-value {
-            font-size: 48px;
-            font-weight: 900;
-            color: var(--primary-green);
-            line-height: 1;
-            margin-bottom: 8px;
-            letter-spacing: -1px;
+        .stat-number {
+            display: block;
+            font-size: 2rem;
+            font-weight: 800;
+            font-family: 'JetBrains Mono', monospace;
         }
 
         .stat-label {
-            font-size: 14px;
-            color: var(--gray);
-            font-weight: 600;
-            letter-spacing: 0.3px;
+            font-size: 0.875rem;
+            opacity: 0.8;
         }
 
-        /* Hero Visual - Premium Phone Mockup */
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.5rem;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: var(--bg-dark);
+            backdrop-filter: blur(10px);
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: white;
+        }
+
+        .btn-full {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* Phone Mockup */
         .hero-visual {
-            flex: 1;
             position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
-            animation: fadeInScale 1s cubic-bezier(0.4, 0, 0.2, 1) 0.4s backwards;
-        }
-
-        @keyframes fadeInScale {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        .phone-container {
-            position: relative;
-            width: 100%;
-            max-width: 420px;
+            padding-top: 60px; /* Add top padding to prevent phone frame from being hidden under navbar */
         }
 
         .phone-mockup {
-            width: 100%;
-            aspect-ratio: 9/19.5;
-            background: linear-gradient(135deg, var(--primary-green) 0%, #4a7a5f 100%);
-            border-radius: 48px;
-            padding: 16px;
-            box-shadow: 
-                0 40px 100px rgba(52, 91, 73, 0.4),
-                0 20px 60px rgba(52, 91, 73, 0.3),
-                inset 0 2px 0 rgba(255, 255, 255, 0.3);
             position: relative;
-            animation: float-device 6s ease-in-out infinite;
+            z-index: 2;
         }
 
-        @keyframes float-device {
-            0%, 100% { transform: translateY(0) rotateY(-5deg) rotateX(2deg); }
-            50% { transform: translateY(-30px) rotateY(5deg) rotateX(-2deg); }
+        .phone-frame {
+            width: 280px;
+            height: 560px;
+            background: linear-gradient(145deg, var(--primary-color), var(--primary-dark));
+            border-radius: 35px;
+            padding: 15px;
+            box-shadow: var(--shadow-heavy);
+            position: relative;
+        }
+
+        .phone-frame::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 6px;
+            background: #4a5568;
+            border-radius: 3px;
         }
 
         .phone-screen {
             width: 100%;
             height: 100%;
-            background: var(--light-cream);
-            border-radius: 38px;
+            background: #000;
+            border-radius: 25px;
             overflow: hidden;
             position: relative;
+        }
+
+        .app-preview {
+            width: 100%;
+            height: 100%;
+            background: var(--bg-dark);
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
+            border-radius: 20px;
         }
 
-        .screen-content {
-            text-align: center;
-            color: var(--gray);
-            padding: 40px;
+        .app-screenshot {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
         }
 
-        .screen-icon {
-            font-size: 72px;
-            margin-bottom: 16px;
-            animation: bounce-slow 3s ease-in-out infinite;
-        }
-
-        @keyframes bounce-slow {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-
-        /* Floating Elements */
-        .float-decoration {
+        .floating-icons {
             position: absolute;
-            opacity: 0.12;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             pointer-events: none;
         }
 
-        .float-1 {
-            top: 5%;
-            left: -80px;
-            font-size: 120px;
-            animation: float-lr 20s ease-in-out infinite;
-        }
-
-        .float-2 {
-            bottom: 10%;
-            right: -100px;
-            font-size: 140px;
-            animation: float-rl 25s ease-in-out infinite;
-        }
-
-        .float-3 {
-            top: 50%;
-            left: -60px;
-            font-size: 80px;
-            animation: float-ud 18s ease-in-out infinite;
-        }
-
-        @keyframes float-lr {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            50% { transform: translate(30px, -30px) rotate(10deg); }
-        }
-
-        @keyframes float-rl {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            50% { transform: translate(-40px, 20px) rotate(-10deg); }
-        }
-
-        @keyframes float-ud {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-40px) rotate(5deg); }
-        }
-
-        /* Mascot Section - Classy Design */
-        .mascot-section {
-            padding: 140px 80px;
-            background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.6) 50%, transparent 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .mascot-wrapper {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 100px;
-            align-items: center;
-        }
-
-        .mascot-visual {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .mascot-circle {
-            width: 550px;
-            height: 550px;
-            background: linear-gradient(135deg, var(--light-cream) 0%, var(--gold) 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 
-                0 40px 100px rgba(52, 91, 73, 0.2),
-                inset 0 2px 40px rgba(255, 255, 255, 0.5);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .mascot-circle::before {
-            content: '';
+        .icon-item {
             position: absolute;
-            inset: -50%;
-            background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            animation: rotate-gradient 8s linear infinite;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            animation: float 6s ease-in-out infinite;
+            animation-delay: var(--delay);
         }
 
-        @keyframes rotate-gradient {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+        .icon-item:nth-child(1) { top: 20%; left: 10%; }
+        .icon-item:nth-child(2) { top: 30%; right: 15%; }
+        .icon-item:nth-child(3) { bottom: 30%; left: 20%; }
+        .icon-item:nth-child(4) { bottom: 20%; right: 10%; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
         }
 
-        .mascot-placeholder {
-            font-size: 220px;
-            z-index: 1;
-            filter: drop-shadow(0 20px 40px rgba(52, 91, 73, 0.3));
-            animation: bounce-slow 4s ease-in-out infinite;
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.7);
         }
 
-        .mascot-content {
-            padding-left: 20px;
-        }
-
-        .section-tag {
-            display: inline-block;
-            padding: 8px 20px;
-            background: rgba(52, 91, 73, 0.08);
-            border-radius: 30px;
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--primary-green);
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            margin-bottom: 24px;
-            border: 1px solid rgba(52, 91, 73, 0.1);
-        }
-
-        .section-title {
-            font-size: 52px;
-            font-weight: 900;
-            color: var(--primary-green);
-            line-height: 1.15;
-            margin-bottom: 28px;
-            letter-spacing: -1.5px;
-        }
-
-        .section-text {
-            font-size: 18px;
-            color: var(--gray);
-            line-height: 1.9;
-            margin-bottom: 20px;
-        }
-
-        /* Features Section - Modern Grid */
-        .features-section {
-            padding: 140px 80px;
-            background: white;
+        .mouse {
+            width: 20px;
+            height: 32px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 12px;
             position: relative;
+        }
+
+        .wheel {
+            width: 2px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 1px;
+            position: absolute;
+            top: 6px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: scroll 2s infinite;
+        }
+
+        @keyframes scroll {
+            0% { opacity: 1; top: 6px; }
+            100% { opacity: 0; top: 18px; }
+        }
+
+        .scroll-text {
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 0;
+            position: relative;
+            background: rgba(255, 255, 255, 0.01);
+            backdrop-filter: blur(0.5px);
         }
 
         .section-header {
             text-align: center;
-            max-width: 800px;
-            margin: 0 auto 80px;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .section-subtitle {
-            font-size: 19px;
-            color: var(--gray);
-            line-height: 1.8;
-            margin-top: 20px;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 32px;
-            max-width: 1400px;
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            max-width: 600px;
             margin: 0 auto;
         }
 
-        .feature-item {
-            padding: 48px;
-            background: linear-gradient(135deg, var(--cream) 0%, rgba(255, 236, 179, 0.5) 100%);
-            border-radius: 28px;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid rgba(52, 91, 73, 0.08);
-            position: relative;
-            overflow: hidden;
+        /* About Section */
+        .about {
+            background: rgba(250, 250, 250, 0.02);
+            backdrop-filter: blur(1px);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        .feature-item::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.5s;
+        .about-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 4rem;
+            align-items: start;
         }
 
-        .feature-item:hover::before {
-            opacity: 1;
+        .text-block {
+            margin-bottom: 2rem;
         }
 
-        .feature-item:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 32px 72px rgba(52, 91, 73, 0.2);
-            border-color: var(--primary-green);
+        .text-block h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
         }
 
-        .feature-icon {
-            width: 84px;
-            height: 84px;
-            background: linear-gradient(135deg, var(--primary-green) 0%, #4a7a5f 100%);
-            border-radius: 22px;
+        .text-block p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .achievements {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .achievement {
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 42px;
-            margin-bottom: 28px;
-            box-shadow: 0 12px 32px rgba(52, 91, 73, 0.3);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
+            gap: 0.5rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: 0.75rem 1rem;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--glass-border);
+            font-size: 0.875rem;
+            color: var(--text-secondary);
         }
 
-        .feature-item:hover .feature-icon {
-            transform: scale(1.1) rotate(-8deg);
+        .achievement i {
+            color: var(--accent-color);
         }
 
-        .feature-title {
-            font-size: 26px;
-            font-weight: 800;
-            color: var(--primary-green);
-            margin-bottom: 16px;
-            letter-spacing: -0.5px;
-        }
-
-        .feature-description {
-            font-size: 16px;
-            color: var(--gray);
-            line-height: 1.8;
-        }
-
-        /* Screenshots Gallery - Premium Carousel */
-        .screenshots-section {
-            padding: 140px 80px;
-            background: linear-gradient(180deg, var(--cream) 0%, var(--light-cream) 100%);
-        }
-
-        .screenshots-carousel {
-            display: flex;
-            gap: 32px;
-            overflow-x: auto;
-            padding: 60px 0;
-            scroll-behavior: smooth;
-            scroll-snap-type: x mandatory;
-            scrollbar-width: thin;
-            scrollbar-color: var(--primary-green) rgba(52, 91, 73, 0.1);
-        }
-
-        .screenshots-carousel::-webkit-scrollbar {
-            height: 10px;
-        }
-
-        .screenshots-carousel::-webkit-scrollbar-track {
-            background: rgba(52, 91, 73, 0.08);
-            border-radius: 10px;
-        }
-
-        .screenshots-carousel::-webkit-scrollbar-thumb {
-            background: var(--primary-green);
-            border-radius: 10px;
-            transition: background 0.3s;
-        }
-
-        .screenshots-carousel::-webkit-scrollbar-thumb:hover {
-            background: #4a7a5f;
-        }
-
-        .screenshot-item {
-            min-width: 340px;
-            aspect-ratio: 9/19.5;
-            background: white;
-            border-radius: 40px;
-            box-shadow: 0 20px 60px rgba(52, 91, 73, 0.2);
+        .about-visual {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 48px;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            scroll-snap-align: center;
-            position: relative;
-            overflow: hidden;
+            gap: 2rem;
         }
 
-        .screenshot-item::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, var(--primary-green), transparent);
-            opacity: 0;
-            transition: opacity 0.5s;
-        }
-
-        .screenshot-item:hover::after {
-            opacity: 0.03;
-        }
-
-        .screenshot-item:hover {
-            transform: scale(1.08) translateY(-12px);
-            box-shadow: 0 32px 80px rgba(52, 91, 73, 0.3);
-        }
-
-        .screenshot-placeholder-icon {
-            font-size: 80px;
-            margin-bottom: 24px;
-            animation: bounce-slow 2.5s ease-in-out infinite;
-            position: relative;
-            z-index: 1;
-        }
-
-        .screenshot-label {
-            font-size: 16px;
-            color: var(--gray);
-            font-weight: 600;
-            margin-bottom: 24px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .upload-btn {
-            padding: 14px 32px;
-            background: var(--primary-green);
-            color: white;
-            border: none;
-            border-radius: 28px;
-            font-size: 14px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-            position: relative;
-            z-index: 1;
-            letter-spacing: 0.3px;
-        }
-
-        .upload-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 12px 32px rgba(52, 91, 73, 0.3);
-        }
-
-        /* Testimonials - Premium Cards */
-        .testimonials-section {
-            padding: 140px 80px;
-            background: white;
-            position: relative;
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 32px;
-            max-width: 1400px;
-            margin: 80px auto 0;
-        }
-
-        .testimonial-item {
-            padding: 48px;
-            background: linear-gradient(135deg, var(--cream) 0%, white 100%);
-            border-radius: 28px;
-            box-shadow: 0 12px 40px rgba(52, 91, 73, 0.08);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid rgba(52, 91, 73, 0.06);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .testimonial-item::before {
-            content: '"';
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            font-size: 200px;
-            color: rgba(52, 91, 73, 0.03);
-            font-family: Georgia, serif;
-            line-height: 0.8;
-        }
-
-        .testimonial-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 24px 60px rgba(52, 91, 73, 0.15);
-        }
-
-        .stars-rating {
-            color: var(--gold);
-            font-size: 22px;
-            margin-bottom: 24px;
-            letter-spacing: 4px;
-            text-shadow: 0 2px 8px rgba(255, 224, 130, 0.3);
-        }
-
-        .testimonial-quote {
-            font-size: 17px;
-            line-height: 1.8;
-            color: var(--gray);
-            margin-bottom: 32px;
-            font-style: italic;
-            position: relative;
-            z-index: 1;
-        }
-
-        .testimonial-author-section {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-        }
-
-        .author-image {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary-green), var(--gold));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            box-shadow: 0 8px 24px rgba(52, 91, 73, 0.2);
-        }
-
-        .author-details {
-            flex: 1;
-        }
-
-        .author-name {
-            font-weight: 800;
-            color: var(--primary-green);
-            font-size: 17px;
-            margin-bottom: 4px;
-            letter-spacing: -0.3px;
-        }
-
-        .author-title {
-            font-size: 14px;
-            color: var(--gray);
-            font-weight: 500;
-        }
-
-        /* FAQ Section - Accordion Style */
-        .faq-section {
-            padding: 140px 80px;
-            background: linear-gradient(180deg, var(--light-cream) 0%, var(--cream) 100%);
-            position: relative;
-        }
-
-        .faq-container {
-            max-width: 900px;
-            margin: 80px auto 0;
-        }
-
-        .faq-item {
-            background: white;
-            border-radius: 20px;
-            margin-bottom: 20px;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(52, 91, 73, 0.08);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid rgba(52, 91, 73, 0.06);
-        }
-
-        .faq-item:hover {
-            box-shadow: 0 8px 32px rgba(52, 91, 73, 0.12);
-        }
-
-        .faq-question {
-            padding: 32px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            position: relative;
-        }
-
-        .faq-question:hover {
-            background: rgba(52, 91, 73, 0.02);
-        }
-
-        .faq-question h3 {
-            font-size: 19px;
-            font-weight: 700;
-            color: var(--primary-green);
-            margin: 0;
-            padding-right: 20px;
-            letter-spacing: -0.3px;
-        }
-
-        .faq-icon {
-            width: 32px;
-            height: 32px;
-            background: var(--primary-green);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 20px;
-            transition: transform 0.3s;
-            flex-shrink: 0;
-        }
-
-        .faq-item.active .faq-icon {
-            transform: rotate(45deg);
-            background: var(--gold);
-        }
-
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .faq-answer-content {
-            padding: 0 40px 32px;
-            font-size: 16px;
-            line-height: 1.8;
-            color: var(--gray);
-        }
-
-        .faq-item.active .faq-answer {
-            max-height: 500px;
-        }
-
-        /* Stats Section - Premium Design */
-        .stats-section {
-            padding: 140px 80px;
-            background: var(--primary-green);
-            color: white;
+        .profile-card {
+            background: var(--bg-primary);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow-medium);
             text-align: center;
             position: relative;
             overflow: hidden;
         }
 
-        .stats-section::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
-            animation: rotate-gradient 20s linear infinite;
-        }
-
-        .stats-wrapper {
-            position: relative;
-            z-index: 1;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 48px;
-            max-width: 1200px;
-            margin: 80px auto 0;
-        }
-
-        .stat-card {
-            padding: 48px 32px;
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(20px);
-            border-radius: 24px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-        }
-
-        .stat-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            background: rgba(255, 255, 255, 0.12);
-            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.2);
-        }
-
-        .stat-card-icon {
-            font-size: 64px;
-            margin-bottom: 24px;
-            filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.2));
-        }
-
-        .stat-number {
-            font-size: 56px;
-            font-weight: 900;
-            margin-bottom: 12px;
-            line-height: 1;
-            letter-spacing: -2px;
-        }
-
-        .stat-text {
-            font-size: 17px;
-            opacity: 0.95;
-            font-weight: 500;
-        }
-
-        /* Download Section - App Store Buttons */
-        .download-section {
-            padding: 140px 80px;
-            background: linear-gradient(135deg, var(--light-cream) 0%, var(--gold) 100%);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .download-section::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(52,91,73,0.1)"/></svg>');
-            opacity: 0.5;
-        }
-
-        .download-wrapper {
-            position: relative;
-            z-index: 1;
-        }
-
-        .store-buttons-container {
-            display: flex;
-            gap: 24px;
-            justify-content: center;
-            margin-top: 48px;
-            flex-wrap: wrap;
-        }
-
-        .store-btn {
-            padding: 20px 48px;
-            background: var(--primary-green);
-            color: white;
-            border: none;
-            border-radius: 18px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 12px 32px rgba(52, 91, 73, 0.3);
-        }
-
-        .store-btn:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 48px rgba(52, 91, 73, 0.4);
-        }
-
-        .store-btn-icon {
-            font-size: 36px;
-        }
-
-        .store-btn-text {
-            text-align: left;
-        }
-
-        .store-btn-label {
-            font-size: 12px;
-            opacity: 0.9;
-            display: block;
-            margin-bottom: 2px;
-        }
-
-        .store-btn-name {
-            font-size: 20px;
-            font-weight: 800;
-            letter-spacing: -0.3px;
-        }
-
-        /* Newsletter Section - Elegant Form */
-        .newsletter-section {
-            padding: 120px 80px;
-            background: white;
-            text-align: center;
-        }
-
-        .newsletter-box {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .newsletter-form {
-            display: flex;
-            gap: 16px;
-            margin-top: 48px;
-            background: var(--cream);
-            padding: 12px;
-            border-radius: 60px;
-            box-shadow: 0 8px 32px rgba(52, 91, 73, 0.1);
-            transition: all 0.3s;
-        }
-
-        .newsletter-form:focus-within {
-            box-shadow: 0 12px 48px rgba(52, 91, 73, 0.15);
-            transform: translateY(-2px);
-        }
-
-        .newsletter-email {
-            flex: 1;
-            padding: 20px 32px;
-            border: none;
-            background: transparent;
-            font-size: 16px;
-            outline: none;
-            color: var(--primary-green);
-        }
-
-        .newsletter-email::placeholder {
-            color: var(--gray);
-            opacity: 0.6;
-        }
-
-        .newsletter-submit {
-            padding: 20px 48px;
-            background: var(--primary-green);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-            white-space: nowrap;
-            letter-spacing: 0.3px;
-        }
-
-        .newsletter-submit:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 24px rgba(52, 91, 73, 0.3);
-        }
-
-        /* How It Works Section */
-        .how-it-works {
-            padding: 140px 80px;
-            background: linear-gradient(180deg, white 0%, var(--cream) 100%);
-        }
-
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 48px;
-            max-width: 1400px;
-            margin: 80px auto 0;
-        }
-
-        .step-item {
-            text-align: center;
-            position: relative;
-        }
-
-        .step-number {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--primary-green), #4a7a5f);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 36px;
-            font-weight: 900;
-            color: white;
-            margin: 0 auto 32px;
-            box-shadow: 0 12px 32px rgba(52, 91, 73, 0.3);
-            position: relative;
-        }
-
-        .step-number::before {
-            content: '';
-            position: absolute;
-            inset: -8px;
-            border: 2px dashed var(--primary-green);
-            border-radius: 50%;
-            opacity: 0.3;
-        }
-
-        .step-item h3 {
-            font-size: 24px;
-            font-weight: 800;
-            color: var(--primary-green);
-            margin-bottom: 16px;
-            letter-spacing: -0.5px;
-        }
-
-        .step-item p {
-            font-size: 16px;
-            color: var(--gray);
-            line-height: 1.8;
-        }
-
-        /* Footer - Premium Design */
-        footer {
-            padding: 100px 80px 48px;
-            background: var(--primary-green);
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        footer::before {
+        .profile-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-primary);
         }
 
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 80px;
-            max-width: 1400px;
-            margin: 0 auto 80px;
-        }
-
-        .footer-brand-section {
-            padding-right: 40px;
-        }
-
-        .footer-logo-box {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-
-        .footer-logo {
-            width: 50px;
-            height: 50px;
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-        }
-
-        .footer-brand-name {
-            font-size: 28px;
-            font-weight: 900;
-            letter-spacing: -0.5px;
-        }
-
-        .footer-description {
-            font-size: 15px;
-            line-height: 1.8;
-            opacity: 0.9;
-            margin-bottom: 32px;
-        }
-
-        .social-links-container {
-            display: flex;
-            gap: 16px;
-        }
-
-        .social-link-btn {
-            width: 48px;
-            height: 48px;
-            background: rgba(255, 255, 255, 0.1);
+        .status-indicator {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 12px;
+            height: 12px;
+            background: #10b981;
             border-radius: 50%;
+            border: 2px solid var(--bg-primary);
+        }
+
+        .profile-info h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .profile-info p {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .tech-stack {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .tech-item {
+            background: var(--bg-primary);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--shadow-light);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-item::before {
+            content: attr(data-tech);
+            position: absolute;
+            bottom: 0.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.75rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .tech-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .tech-item i,
+        .tech-item img {
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            background: rgba(255, 255, 255, 0.01);
+            backdrop-filter: blur(1px);
+        }
+        
+        .apps-showcase {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .app-card {
+            background: var(--bg-primary);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow-light);
+            margin-bottom: 3rem;
+            transition: var(--transition);
+            border: 1px solid var(--glass-border);
+        }
+
+        .app-card.featured {
+            border: 2px solid var(--primary-color);
+            box-shadow: 0 10px 40px rgba(45, 212, 191, 0.1);
+        }
+
+        .app-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .app-header {
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            cursor: pointer;
-            transition: all 0.3s;
-            backdrop-filter: blur(10px);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            position: relative;
         }
 
-        .social-link-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-4px);
+        .app-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: var(--shadow-medium);
+            flex-shrink: 0;
         }
 
-        .footer-column h4 {
-            font-size: 18px;
-            font-weight: 800;
-            margin-bottom: 28px;
-            letter-spacing: -0.3px;
+        .app-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
-        .footer-links-list {
+        .app-info {
+            flex: 1;
+        }
+
+        .app-name {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .app-tagline {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .app-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .stars {
+            display: flex;
+            gap: 0.125rem;
+        }
+
+        .stars i {
+            color: #fbbf24;
+            font-size: 0.875rem;
+        }
+
+        .rating-text {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .app-badge {
+            position: absolute;
+            top: -0.5rem;
+            right: 0;
+            background: var(--gradient-primary);
+            color: white;
+            padding: 0.375rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .app-features {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
         }
 
-        .footer-link {
-            color: rgba(255, 255, 255, 0.85);
-            text-decoration: none;
-            font-size: 15px;
-            font-weight: 500;
-            transition: all 0.3s;
-            display: inline-block;
-        }
-
-        .footer-link:hover {
-            color: white;
-            transform: translateX(4px);
-        }
-
-        .footer-bottom-bar {
-            padding-top: 48px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        .feature-item {
             display: flex;
-            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-primary);
+            border-radius: 10px;
+            display: flex;
             align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.125rem;
+            flex-shrink: 0;
+        }
+
+        .feature-text h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .feature-text p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .app-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--bg-secondary);
+            border-radius: var(--border-radius);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .app-description {
+            margin-bottom: 2rem;
+        }
+
+        .app-description p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        .app-tech {
+            margin-bottom: 2rem;
+        }
+
+        .app-tech h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .tech-badges {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tech-badge {
+            background: var(--glass-bg);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            border: 1px solid var(--glass-border);
+        }
+
+        .app-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .store-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.875rem 1.5rem;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            transition: var(--transition);
+            border: 2px solid var(--glass-border);
+            background: var(--bg-primary);
+            min-width: 160px;
+        }
+
+        .store-btn.android {
+            border-color: #34a853;
+            color: #34a853;
+        }
+
+        .store-btn.android:hover {
+            background: #34a853;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .store-btn.ios {
+            border-color: #007aff;
+            color: #007aff;
+        }
+
+        .store-btn.ios:hover {
+            background: #007aff;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .store-btn i {
+            font-size: 1.5rem;
+        }
+
+        .btn-content {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .btn-label {
+            font-size: 0.75rem;
             opacity: 0.8;
         }
 
-        .footer-copyright {
-            font-size: 14px;
+        .btn-store {
+            font-size: 1rem;
+            font-weight: 600;
         }
 
-        .footer-legal {
-            display: flex;
-            gap: 32px;
+        /* Coming Soon Section */
+        .coming-soon {
+            margin-top: 4rem;
+            text-align: center;
         }
 
-        .footer-legal a {
-            color: rgba(255, 255, 255, 0.85);
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s;
+        .coming-soon-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 2rem;
         }
 
-        .footer-legal a:hover {
-            color: white;
+        .coming-soon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
         }
 
-        /* Scroll to Top Button */
-        .scroll-top {
-            position: fixed;
-            bottom: 40px;
-            right: 40px;
-            width: 56px;
-            height: 56px;
-            background: var(--primary-green);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-            opacity: 0;
-            pointer-events: none;
-            transition: all 0.3s;
-            box-shadow: 0 8px 24px rgba(52, 91, 73, 0.3);
-            z-index: 9999;
+        .coming-soon-card {
+            background: var(--bg-secondary);
+            padding: 2rem 1.5rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid var(--glass-border);
+            position: relative;
         }
 
-        .scroll-top.visible {
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        .scroll-top:hover {
+        .coming-soon-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 12px 32px rgba(52, 91, 73, 0.4);
+            box-shadow: var(--shadow-medium);
         }
 
-        /* Mobile Menu Toggle */
-        .mobile-menu-toggle {
-            display: none;
-            width: 40px;
-            height: 40px;
-            background: var(--primary-green);
-            border-radius: 8px;
-            flex-direction: column;
+        .coming-soon-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            border-radius: 15px;
+            display: flex;
             align-items: center;
             justify-content: center;
-            gap: 5px;
-            cursor: pointer;
-            transition: all 0.3s;
+            margin: 0 auto 1rem;
+            color: white;
+            font-size: 1.5rem;
         }
 
-        .mobile-menu-toggle span {
-            width: 20px;
-            height: 2px;
-            background: white;
-            transition: all 0.3s;
+        .coming-soon-card h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
         }
 
-        .mobile-menu-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translateY(7px);
+        .coming-soon-card p {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
         }
 
-        .mobile-menu-toggle.active span:nth-child(2) {
-            opacity: 0;
+        .status-badge {
+            padding: 0.375rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        .mobile-menu-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translateY(-7px);
+        .status-badge.developing {
+            background: rgba(34, 197, 94, 0.1);
+            color: #22c55e;
         }
 
-        /* Responsive Design */
-        @media (max-width: 1200px) {
-            .hero {
-                gap: 60px;
-            }
-
-            .mascot-wrapper {
-                gap: 60px;
-            }
-
-            .mascot-circle {
-                width: 450px;
-                height: 450px;
-            }
-
-            .mascot-placeholder {
-                font-size: 180px;
-            }
+        .status-badge.design {
+            background: rgba(168, 85, 247, 0.1);
+            color: #a855f7;
         }
 
-        @media (max-width: 968px) {
-            .nav-menu {
-                display: none;
+        .status-badge.planning {
+            background: rgba(249, 115, 22, 0.1);
+            color: #f97316;
+        }
+
+        /* Responsive for Portfolio */
+        @media (max-width: 768px) {
+            .app-stats {
+                grid-template-columns: repeat(2, 1fr);
             }
 
-            .mobile-menu-toggle {
-                display: flex;
-            }
-
-            .hero {
+            .app-actions {
                 flex-direction: column;
-                padding: 120px 40px 80px;
-                gap: 50px;
-            }
-
-            .hero h1 {
-                font-size: 48px;
-            }
-
-            .hero-stats {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 24px;
-            }
-
-            .mascot-wrapper {
-                grid-template-columns: 1fr;
-                gap: 60px;
-            }
-
-            .mascot-circle {
-                width: 380px;
-                height: 380px;
-            }
-
-            .mascot-placeholder {
-                font-size: 150px;
-            }
-
-            .features-grid,
-            .testimonials-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 48px;
-            }
-
-            .footer-brand-section {
-                grid-column: 1 / -1;
-            }
-        }
-
-        @media (max-width: 640px) {
-            .navbar {
-                padding: 12px 24px;
-            }
-
-            .nav-container {
-                padding: 0;
-            }
-
-            .hero,
-            .mascot-section,
-            .features-section,
-            .screenshots-section,
-            .testimonials-section,
-            .faq-section,
-            .stats-section,
-            .download-section,
-            .newsletter-section,
-            .how-it-works,
-            footer {
-                padding-left: 24px;
-                padding-right: 24px;
-            }
-
-            .hero h1 {
-                font-size: 36px;
-            }
-
-            .hero-description {
-                font-size: 17px;
-            }
-
-            .hero-stats {
-                grid-template-columns: 1fr;
-                gap: 32px;
-            }
-
-            .section-title {
-                font-size: 36px;
-            }
-
-            .mascot-circle {
-                width: 280px;
-                height: 280px;
-            }
-
-            .mascot-placeholder {
-                font-size: 100px;
-            }
-
-            .newsletter-form {
-                flex-direction: column;
-                border-radius: 24px;
-            }
-
-            .newsletter-submit {
-                width: 100%;
-            }
-
-            .store-buttons-container {
-                flex-direction: column;
-                align-items: stretch;
             }
 
             .store-btn {
                 justify-content: center;
             }
 
-            .footer-grid {
+            .coming-soon-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Skills Section */
+        .skills {
+            background: rgba(250, 250, 250, 0.015);
+            backdrop-filter: blur(1px);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: var(--bg-primary);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow-light);
+        }
+
+        .skill-category h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        .skill-items {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .skill-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .skill-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-primary);
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .skill-info {
+            flex: 1;
+        }
+
+        .skill-info h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .skill-bar {
+            height: 6px;
+            background: var(--glass-bg);
+            border-radius: 3px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: var(--gradient-primary);
+            border-radius: 3px;
+            width: 0;
+            transition: width 1s ease-in-out;
+        }
+
+        .skill-percentage {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-left: auto;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(1px);
+        }
+
+        .testimonials-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-item {
+            background: var(--bg-secondary);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow-light);
+            display: none;
+        }
+
+        .testimonial-item.active {
+            display: block;
+        }
+
+        .testimonial-content {
+            font-size: 1.125rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .author-info p {
+            font-size: 0.875rem;
+            color: var(--text-light);
+        }
+
+        .testimonial-rating {
+            display: flex;
+            justify-content: center;
+            gap: 0.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .star {
+            color: var(--accent-color);
+            font-size: 1.25rem;
+        }
+
+        .slider-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .slider-btn {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-color);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slider-btn:hover {
+            background: var(--primary-dark);
+            transform: scale(1.1);
+        }
+
+        .slider-dots {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--glass-border);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .dot.active {
+            background: var(--primary-color);
+        }
+
+        /* Contact Section */
+        .contact {
+            background: rgba(250, 250, 250, 0.02);
+            backdrop-filter: blur(1px);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-primary);
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .contact-details h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-details p {
+            color: var(--text-secondary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .contact-form {
+            background: var(--bg-primary);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow-light);
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--glass-border);
+            border-radius: var(--border-radius);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: var(--transition);
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .form-group label {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            color: var(--text-light);
+            font-size: 1rem;
+            transition: var(--transition);
+            pointer-events: none;
+            background: var(--bg-secondary);
+            padding: 0 0.5rem;
+        }
+
+        .form-group input:focus + label,
+        .form-group input:not(:placeholder-shown) + label,
+        .form-group select:focus + label,
+        .form-group select:not([value=""]) + label,
+        .form-group textarea:focus + label,
+        .form-group textarea:not(:placeholder-shown) + label {
+            top: -0.5rem;
+            left: 0.75rem;
+            font-size: 0.875rem;
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 3rem 0 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo .logo-text {
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .footer-text {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-light);
+        }
+
+        .footer-legal {
+            margin: 1.5rem 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.875rem;
+        }
+
+        .footer-legal a {
+            color: var(--text-light);
+            transition: var(--transition);
+        }
+
+        .footer-legal a:hover {
+            color: var(--primary-light);
+        }
+
+        .footer-legal .separator {
+            color: var(--text-light);
+            opacity: 0.5;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.875rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 80px;
+                flex-direction: column;
+                background: rgba(15, 23, 42, 0.95);
+                backdrop-filter: blur(20px);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                padding: 2rem 1rem;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                border-radius: 0;
+                border: none;
+                gap: 0;
+            }
+
+            .nav-menu li {
+                margin: 0.5rem 0;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-actions {
+                display: none;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .nav-toggle.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            .nav-toggle.active .bar:nth-child(1) {
+                transform: translateY(6px) rotate(45deg);
+            }
+
+            .nav-toggle.active .bar:nth-child(3) {
+                transform: translateY(-6px) rotate(-45deg);
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .hero-visual {
+                order: -1;
+            }
+
+            .phone-frame {
+                width: 220px;
+                height: 440px;
+            }
+
+            .hero-stats {
+                justify-content: center;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .skills-grid {
                 grid-template-columns: 1fr;
             }
 
-            .footer-bottom-bar {
-                flex-direction: column;
-                gap: 24px;
-                text-align: center;
+            .portfolio-grid {
+                grid-template-columns: 1fr;
             }
 
-            .scroll-top {
-                bottom: 24px;
-                right: 24px;
-                width: 48px;
-                height: 48px;
+            .tech-stack {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .slider-controls {
+                gap: 1rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            section {
+                padding: 3rem 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .tech-stack {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .phone-frame {
+                width: 180px;
+                height: 360px;
+            }
+
+            .floating-icons {
+                display: none;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease-out;
+        }
+
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease-out;
+        }
+
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.8s ease-out;
+        }
+
+        .scale-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Enhanced Hover Effects */
+        .hover-lift {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(45, 212, 191, 0.2);
+        }
+
+        /* Glowing Elements */
+        .glow-on-scroll {
+            transition: box-shadow 0.3s ease;
+        }
+
+        .glow-on-scroll.visible {
+            box-shadow: 0 0 30px rgba(45, 212, 191, 0.3);
+        }
+
+        /* Enhanced Button Effects */
+        .magnetic {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Advanced Scroll Animations */
+        .parallax-bg {
+            transform: translateY(var(--scroll-offset, 0));
+            transition: transform 0.1s ease-out;
+        }
+
+        .stagger-item {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transition-delay: var(--stagger-delay, 0s);
+        }
+
+        .stagger-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(60px) rotateX(20deg);
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal-up.visible {
+            opacity: 1;
+            transform: translateY(0) rotateX(0deg);
+        }
+
+        .floating-element {
+            animation: float-gentle 6s ease-in-out infinite;
+        }
+
+        @keyframes float-gentle {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .scroll-scale {
+            transform: scale(var(--scale-factor, 1));
+            transition: transform 0.1s ease-out;
+        }
+
+        .morphing-shape {
+            border-radius: var(--border-radius);
+            transition: border-radius 0.3s ease;
+        }
+
+        .morphing-shape:hover {
+            border-radius: 50px;
+        }
+
+        /* Magnetic Effect */
+        .magnetic {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Text Reveal Animation */
+        .text-reveal {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .text-reveal .text-line {
+            display: block;
+            transform: translateY(100%);
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .text-reveal.visible .text-line {
+            transform: translateY(0);
+        }
+
+        /* Scroll Progress Indicator */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            z-index: 9999;
+            background: rgba(45, 212, 191, 0.1);
+        }
+
+        .scroll-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+
+        /* Enhanced Hover Effects */
+        .hover-lift {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(45, 212, 191, 0.2);
+        }
+
+        /* Glowing Elements */
+        .glow-on-scroll {
+            transition: box-shadow 0.3s ease;
+        }
+
+        .glow-on-scroll.visible {
+            box-shadow: 0 0 30px rgba(45, 212, 191, 0.3);
+        }
+
+        /* Advanced Scroll Animations */
+        .parallax-bg {
+            transform: translateY(var(--scroll-offset, 0));
+            transition: transform 0.1s ease-out;
+        }
+
+        .stagger-item {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transition-delay: var(--stagger-delay, 0s);
+        }
+
+        .stagger-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(60px) rotateX(20deg);
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal-up.visible {
+            opacity: 1;
+            transform: translateY(0) rotateX(0deg);
+        }
+
+        .floating-element {
+            animation: float-gentle 6s ease-in-out infinite;
+        }
+
+        @keyframes float-gentle {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .scroll-scale {
+            transform: scale(var(--scale-factor, 1));
+            transition: transform 0.1s ease-out;
+        }
+
+        .morphing-shape {
+            border-radius: var(--border-radius);
+            transition: border-radius 0.3s ease;
+        }
+
+        .morphing-shape:hover {
+            border-radius: 50px;
+        }
+
+        /* Magnetic Effect */
+        .magnetic {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Text Reveal Animation */
+        .text-reveal {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .text-reveal .text-line {
+            display: block;
+            transform: translateY(100%);
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .text-reveal.visible .text-line {
+            transform: translateY(0);
+        }
+
+        /* Scroll Progress Indicator */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            z-index: 9999;
+            background: rgba(45, 212, 191, 0.1);
+        }
+
+        .scroll-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Loading Animation */
+        .loading {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Glassmorphism Effects */
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Gradient Text */
+        .gradient-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Pulse Animation */
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
             }
         }
     </style>
 </head>
 <body>
-    <!-- Background Effects -->
-    <canvas class="bg-canvas"></canvas>
-    <div class="mesh-gradient"></div>
-
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress">
+        <div class="scroll-progress-bar" id="scroll-progress-bar"></div>
+    </div>
+    
+    <!-- Interactive Starfield Background -->
+    <div id="particles-container">
+        <div id="starfield"></div>
+        <div class="cursor-glow" id="cursor-glow"></div>
+    </div>
+    
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <div class="logo-section">
-                <div class="logo-container">
-                    <div class="logo-placeholder">🌱</div>
+            <div class="nav-logo">
+                <div class="logo-icon">
+                    <i class="fas fa-code"></i>
                 </div>
-                <div class="brand-info">
-                    <div class="brand-name">Sprouts</div>
-                    <div class="brand-subtitle">Plant Care Excellence</div>
-                </div>
+                <span class="logo-text">Dev<span class="accent">Studio</span></span>
             </div>
-            <div class="nav-menu">
-                <a href="#features" class="nav-link">Features</a>
-                <a href="#how-it-works" class="nav-link">How It Works</a>
-                <a href="#testimonials" class="nav-link">Reviews</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#download" class="nav-link">Download</a>
+            
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#testimonials" class="nav-link">Reviews</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            
+            <div class="nav-actions">
+                <button class="theme-toggle magnetic" id="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="#contact" class="nav-cta magnetic hover-lift">Hire Me</a>
             </div>
-            <button class="nav-cta">Get Started Free</button>
-            <div class="mobile-menu-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
+            
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-badge">
-                <span class="pulse-dot"></span>
-                Over 50,000 Happy Plant Parents
-            </div>
-            <h1>Transform Your Space Into a Thriving Garden</h1>
-            <p class="hero-description">Experience the future of plant care with AI-powered reminders, expert guidance, and a supportive community. Watch your plants flourish like never before.</p>
-            <div class="hero-actions">
-                <button class="btn-primary">Download for Free</button>
-                <button class="btn-secondary">Watch Demo Video</button>
-            </div>
-            <div class="hero-stats">
-                <div class="stat-box">
-                    <div class="stat-value">50K+</div>
-                    <div class="stat-label">Active Users</div>
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        <span class="title-line animate__animated animate__fadeInUp">Mobile App</span>
+                        <span class="title-line animate__animated animate__fadeInUp animate__delay-1s">Engineer</span>
+                    </h1>
+                    <p class="hero-subtitle animate__animated animate__fadeInUp animate__delay-2s">
+                        Creating exceptional mobile experiences for iOS & Android. 
+                        Published multiple apps with millions of downloads.
+                    </p>
+                    <div class="hero-stats animate__animated animate__fadeInUp animate__delay-3s">
+                        <div class="stat">
+                            <span class="stat-number" data-count="25">0</span>
+                            <span class="stat-label">Apps Published</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number" data-count="2.5">0</span>
+                            <span class="stat-label">M+ Downloads</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number" data-count="4.8">0</span>
+                            <span class="stat-label">Avg Rating</span>
+                        </div>
+                    </div>
+                    <div class="hero-buttons animate__animated animate__fadeInUp animate__delay-4s">
+                        <a href="#portfolio" class="btn btn-primary magnetic hover-lift">
+                            <span>View My Work</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="#contact" class="btn btn-secondary magnetic">
+                            <i class="fas fa-phone"></i>
+                            <span>Let's Talk</span>
+                        </a>
+                    </div>
                 </div>
-                <div class="stat-box">
-                    <div class="stat-value">100K+</div>
-                    <div class="stat-label">Plants Cared</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-value">4.9★</div>
-                    <div class="stat-label">App Rating</div>
+                
+                <div class="hero-visual">
+                    <div class="phone-mockup animate__animated animate__fadeInRight animate__delay-1s floating-element scroll-scale">
+                        <div class="phone-frame">
+                            <div class="phone-screen">
+                                <div class="app-preview" id="app-carousel">
+                                    <img src="assets/sprouts.png" alt="Sprouts - Plant Care App" class="app-screenshot">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="floating-icons">
+                        <div class="icon-item" style="--delay: 0s"><i class="fab fa-apple"></i></div>
+                        <div class="icon-item" style="--delay: 1s"><i class="fab fa-android"></i></div>
+                        <div class="icon-item" style="--delay: 2s"><i class="fab fa-react"></i></div>
+                        <div class="icon-item" style="--delay: 3s"><i class="fab fa-flutter"></i></div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="hero-visual">
-            <div class="float-decoration float-1">🌿</div>
-            <div class="float-decoration float-2">🌱</div>
-            <div class="float-decoration float-3">🍃</div>
-            <div class="phone-container">
-                <div class="phone-mockup">
-                    <div class="phone-screen">
-                        <div class="screen-content">
-                            <div class="screen-icon">📱</div>
-                            <div>Upload your hero screenshot here</div>
+        
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <div class="scroll-text">Scroll</div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title text-reveal">
+                    <span class="">About Me</span>
+                </h2>
+                <p class="section-subtitle fade-in">Passionate about creating mobile experiences that matter</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <div class="text-block">
+                        <h3>Mobile Development Expert</h3>
+                        <p>With over 5 years of experience in mobile app development, I've successfully launched multiple applications that have collectively garnered millions of downloads across both iOS and Android platforms.</p>
+                    </div>
+                    
+                    <div class="text-block">
+                        <h3>Cross-Platform Specialist</h3>
+                        <p>Proficient in native iOS (Swift) and Android (Kotlin/Java) development, as well as cross-platform frameworks like React Native and Flutter. I choose the right technology stack for each project's unique requirements.</p>
+                    </div>
+                    
+                    <div class="text-block">
+                        <h3>User-Centric Approach</h3>
+                        <p>I believe in creating apps that not only look great but also provide exceptional user experiences. Every line of code is written with the end user in mind.</p>
+                    </div>
+                    
+                    <div class="achievements">
+                        <div class="achievement">
+                            <i class="fas fa-trophy"></i>
+                            <span>Top Developer Badge</span>
+                        </div>
+                        <div class="achievement">
+                            <i class="fas fa-star"></i>
+                            <span>4.8+ App Store Rating</span>
+                        </div>
+                        <div class="achievement">
+                            <i class="fas fa-medal"></i>
+                            <span>Featured Apps</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-visual">
+                    <div class="profile-card">
+                        <div class="profile-info">
+                            <div class="status-indicator"></div>
+                            <h4>Available for Projects</h4>
+                            <p>Currently accepting new mobile app development projects</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tech-stack">
+                        <div class="tech-item" data-tech="iOS">
+                            <i class="fab fa-apple"></i>
+                        </div>
+                        <div class="tech-item" data-tech="Android">
+                            <i class="fab fa-android"></i>
+                        </div>
+                        <div class="tech-item" data-tech="React Native">
+                            <i class="fab fa-react"></i>
+                        </div>
+                        <div class="tech-item" data-tech="Flutter">
+                            <img src="https://storage.googleapis.com/cms-storage-bucket/0dbfcc7a59cd1cf16282.png" alt="Flutter" width="24" height="24">
                         </div>
                     </div>
                 </div>
@@ -1706,557 +2265,1058 @@
         </div>
     </section>
 
-    <!-- Mascot Section -->
-    <section class="mascot-section">
-        <div class="mascot-wrapper">
-            <div class="mascot-visual">
-                <div class="mascot-circle">
-                    <div class="mascot-placeholder">🌿</div>
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title text-reveal">
+                    <span class="">Featured Apps</span>
+                </h2>
+                <p class="section-subtitle fade-in">Successful mobile applications published on major app stores</p>
+            </div>
+            
+            <div class="apps-showcase">
+                <div class="app-card featured">
+                    <div class="app-header">
+                        <div class="app-icon">
+                            <img src="assets/sprouts_icon.png" alt="Sprouts App Icon">
+                        </div>
+                        <div class="app-info">
+                            <h3 class="app-name">Sprouts</h3>
+                            <p class="app-tagline">Plant Care Made Simple</p>
+                            <div class="app-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="rating-text">4.8 (500+ reviews)</span>
+                            </div>
+                        </div>
+                        <div class="app-badge">
+                            <span class="badge-text">Featured</span>
+                        </div>
+                    </div>
+                    
+                    <div class="app-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-seedling"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Smart Plant Care</h4>
+                                <p>AI-powered care schedules tailored to each plant species</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-bell"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Timely Reminders</h4>
+                                <p>Never miss watering or fertilizing again</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Growth Tracking</h4>
+                                <p>Monitor your plants' progress over time</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="app-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">10K+</div>
+                            <div class="stat-label">Downloads</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">4.8★</div>
+                            <div class="stat-label">Rating</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">500+</div>
+                            <div class="stat-label">Reviews</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">15</div>
+                            <div class="stat-label">Countries</div>
+                        </div>
+                    </div>
+                    
+                    <div class="app-description">
+                        <p>Sprouts revolutionizes plant care with intelligent scheduling, personalized reminders, and comprehensive growth tracking. Whether you're a beginner or experienced gardener, our AI-powered recommendations help your plants thrive.</p>
+                    </div>
+                    
+                    <div class="app-tech">
+                        <h4>Built With</h4>
+                        <div class="tech-badges">
+                            <span class="tech-badge">React Native</span>
+                            <span class="tech-badge">Node.js</span>
+                            <span class="tech-badge">MongoDB</span>
+                            <span class="tech-badge">Firebase</span>
+                            <span class="tech-badge">AI/ML</span>
+                        </div>
+                    </div>
+                    
+                    <div class="app-actions">
+                        <a href="https://play.google.com/store/apps/details?id=com.shahid.sprouts" class="store-btn android" target="_blank">
+                            <i class="fab fa-google-play"></i>
+                            <div class="btn-content">
+                                <span class="btn-label">Get it on</span>
+                                <span class="btn-store">Google Play</span>
+                            </div>
+                        </a>
+                        <a href="https://apps.apple.com/app/com.shahid.sprouts" class="store-btn ios" target="_blank">
+                            <i class="fab fa-app-store-ios"></i>
+                            <div class="btn-content">
+                                <span class="btn-label">Download on the</span>
+                                <span class="btn-store">App Store</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Coming Soon Section -->
+                <div class="coming-soon">
+                    <h3 class="coming-soon-title">More Apps Coming Soon</h3>
+                    <div class="coming-soon-grid">
+                        <div class="coming-soon-card">
+                            <div class="coming-soon-icon">
+                                <i class="fas fa-dumbbell"></i>
+                            </div>
+                            <h4>FitTracker Pro</h4>
+                            <p>Advanced fitness tracking</p>
+                            <span class="status-badge developing">In Development</span>
+                        </div>
+                        
+                        <div class="coming-soon-card">
+                            <div class="coming-soon-icon">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <h4>RecipeBox</h4>
+                            <p>Smart meal planning</p>
+                            <span class="status-badge design">Design Phase</span>
+                        </div>
+                        
+                        <div class="coming-soon-card">
+                            <div class="coming-soon-icon">
+                                <i class="fas fa-coins"></i>
+                            </div>
+                            <h4>BudgetWise</h4>
+                            <p>Personal finance tracker</p>
+                            <span class="status-badge planning">Planning</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="mascot-content">
-                <span class="section-tag">Meet Your Companion</span>
-                <h2 class="section-title">Your Personal Plant Care Guide</h2>
-                <p class="section-text">Meet Sprout, your charming plant care companion! With a wealth of botanical knowledge and endless enthusiasm, Sprout guides you through every step of your plant parenting journey.</p>
-                <p class="section-text">From perfectly timed watering reminders to expert troubleshooting advice, Sprout brings personality, wisdom, and joy to plant care. It's like having a green-thumbed friend in your pocket!</p>
-                <button class="btn-primary" style="margin-top: 24px;">Learn More About Sprout</button>
-            </div>
         </div>
     </section>
 
-    <!-- How It Works Section -->
-    <section class="how-it-works" id="how-it-works">
-        <div class="section-header">
-            <span class="section-tag">Simple & Effective</span>
-            <h2 class="section-title">How Sprouts Works</h2>
-            <p class="section-subtitle">Get started in minutes and watch your plants thrive with our simple three-step process.</p>
-        </div>
-        <div class="steps-grid">
-            <div class="step-item">
-                <div class="step-number">1</div>
-                <h3>Add Your Plants</h3>
-                <p>Take a photo or search our extensive database of over 10,000 plant species. Add details about location and pot size for personalized care.</p>
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title text-reveal">
+                    <span class="">Technical Skills</span>
+                </h2>
+                <p class="section-subtitle fade-in">Technologies and frameworks I work with</p>
             </div>
-            <div class="step-item">
-                <div class="step-number">2</div>
-                <h3>Get Smart Reminders</h3>
-                <p>Receive intelligent notifications for watering, fertilizing, and seasonal care based on your plant's specific needs and local weather.</p>
-            </div>
-            <div class="step-item">
-                <div class="step-number">3</div>
-                <h3>Watch Them Flourish</h3>
-                <p>Track growth with photos, access expert tips anytime, and connect with our community of passionate plant lovers worldwide.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features-section" id="features">
-        <div class="section-header">
-            <span class="section-tag">Powerful Features</span>
-            <h2 class="section-title">Everything Your Plants Deserve</h2>
-            <p class="section-subtitle">Comprehensive tools designed to make plant care effortless, effective, and incredibly enjoyable for everyone.</p>
-        </div>
-        <div class="features-grid">
-            <div class="feature-item">
-                <div class="feature-icon">💧</div>
-                <h3 class="feature-title">Smart Watering System</h3>
-                <p class="feature-description">AI-powered schedules that adapt to each plant's unique needs, soil type, weather conditions, and seasonal changes. Never over or underwater again.</p>
-            </div>
-            <div class="feature-item">
-                <div class="feature-icon">🌞</div>
-                <h3 class="feature-title">Light Optimization</h3>
-                <p class="feature-description">Advanced light tracking with recommendations for the perfect spot in your home. Ensure every plant gets its ideal sun exposure.</p>
-            </div>
-            <div class="feature-item">
-                <div class="feature-icon">📚</div>
-                <h3 class="feature-title">Plant Encyclopedia</h3>
-                <p class="feature-description">Access detailed care guides for 10,000+ species. From rare tropicals to common houseplants, expert knowledge at your fingertips.</p>
-            </div>
-            <div class="feature-item">
-                <div class="feature-icon">🔔</div>
-                <h3 class="feature-title">Intelligent Notifications</h3>
-                <p class="feature-description">Custom reminders for watering, fertilizing, pruning, and repotting. Delivered at the perfect time, never miss a care task.</p>
-            </div>
-            <div class="feature-item">
-                <div class="feature-icon">📊</div>
-                <h3 class="feature-title">Growth Analytics</h3>
-                <p class="feature-description">Track your plants' progress with photos, notes, and detailed growth metrics. Watch your garden flourish over time with beautiful visualizations.</p>
-            </div>
-            <div class="feature-item">
-                <div class="feature-icon">👥</div>
-                <h3 class="feature-title">Thriving Community</h3>
-                <p class="feature-description">Connect with 50,000+ plant enthusiasts worldwide. Share tips, ask questions, and celebrate your green successes together.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Screenshots Section -->
-    <section class="screenshots-section">
-        <div class="section-header">
-            <span class="section-tag">App Preview</span>
-            <h2 class="section-title">Beautiful Design, Powerful Features</h2>
-            <p class="section-subtitle">Explore our elegant interface designed to make plant care intuitive and delightful.</p>
-        </div>
-        <div class="screenshots-carousel">
-            <div class="screenshot-item">
-                <div class="screenshot-placeholder-icon">🏠</div>
-                <div class="screenshot-label">Dashboard View</div>
-                <button class="upload-btn">Upload Screenshot</button>
-            </div>
-            <div class="screenshot-item">
-                <div class="screenshot-placeholder-icon">🌱</div>
-                <div class="screenshot-label">Plant Details</div>
-                <button class="upload-btn">Upload Screenshot</button>
-            </div>
-            <div class="screenshot-item">
-                <div class="screenshot-placeholder-icon">📅</div>
-                <div class="screenshot-label">Care Calendar</div>
-                <button class="upload-btn">Upload Screenshot</button>
-            </div>
-            <div class="screenshot-item">
-                <div class="screenshot-placeholder-icon">📖</div>
-                <div class="screenshot-label">Plant Library</div>
-                <button class="upload-btn">Upload Screenshot</button>
-            </div>
-            <div class="screenshot-item">
-                <div class="screenshot-placeholder-icon">📸</div>
-                <div class="screenshot-label">Growth Tracking</div>
-                <button class="upload-btn">Upload Screenshot</button>
-            </div>
-            <div class="screenshot-item">
-                <div class="screenshot-placeholder-icon">👥</div>
-                <div class="screenshot-label">Community Feed</div>
-                <button class="upload-btn">Upload Screenshot</button>
+            
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Mobile Platforms</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <div class="skill-icon">
+                                <i class="fab fa-apple"></i>
+                            </div>
+                            <div class="skill-info">
+                                <h4>iOS Development</h4>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="95%"></div>
+                                </div>
+                                <span class="skill-percentage">95%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="skill-icon">
+                                <i class="fab fa-android"></i>
+                            </div>
+                            <div class="skill-info">
+                                <h4>Android Development</h4>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="90%"></div>
+                                </div>
+                                <span class="skill-percentage">90%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Languages</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <div class="skill-icon">
+                                <i class="fab fa-swift"></i>
+                            </div>
+                            <div class="skill-info">
+                                <h4>Swift</h4>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="95%"></div>
+                                </div>
+                                <span class="skill-percentage">95%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="skill-icon">
+                                <i class="fab fa-java"></i>
+                            </div>
+                            <div class="skill-info">
+                                <h4>Kotlin/Java</h4>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="88%"></div>
+                                </div>
+                                <span class="skill-percentage">88%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Frameworks</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <div class="skill-icon">
+                                <i class="fab fa-react"></i>
+                            </div>
+                            <div class="skill-info">
+                                <h4>React Native</h4>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="85%"></div>
+                                </div>
+                                <span class="skill-percentage">85%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="skill-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <div class="skill-info">
+                                <h4>Flutter</h4>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="80%"></div>
+                                </div>
+                                <span class="skill-percentage">80%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Testimonials Section -->
-    <section class="testimonials-section" id="testimonials">
-        <div class="section-header">
-            <span class="section-tag">User Reviews</span>
-            <h2 class="section-title">Loved by Plant Parents Everywhere</h2>
-            <p class="section-subtitle">Join thousands of happy users who transformed their spaces with Sprouts.</p>
-        </div>
-        <div class="testimonials-grid">
-            <div class="testimonial-item">
-                <div class="stars-rating">★★★★★</div>
-                <p class="testimonial-quote">"Sprouts completely transformed my relationship with plants. The AI reminders are incredibly accurate, and I love how the app adapts to each plant's needs. My apartment has never looked greener!"</p>
-                <div class="testimonial-author-section">
-                    <div class="author-image">👩</div>
-                    <div class="author-details">
-                        <div class="author-name">Sarah Mitchell</div>
-                        <div class="author-title">Urban Gardener</div>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-item">
-                <div class="stars-rating">★★★★★</div>
-                <p class="testimonial-quote">"As a complete beginner, I was nervous about keeping plants alive. Sprouts made it so easy! The mascot is adorable, the guides are clear, and the community is incredibly supportive. Highly recommend!"</p>
-                <div class="testimonial-author-section">
-                    <div class="author-image">👨</div>
-                    <div class="author-details">
-                        <div class="author-name">Michael Chen</div>
-                        <div class="author-title">First-Time Plant Parent</div>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-item">
-                <div class="stars-rating">★★★★★</div>
-                <p class="testimonial-quote">"The plant encyclopedia is phenomenal! I've discovered so many new species and the care instructions are incredibly detailed. The growth tracking feature helps me see real progress. Worth every penny!"</p>
-                <div class="testimonial-author-section">
-                    <div class="author-image">👩</div>
-                    <div class="author-details">
-                        <div class="author-name">Emma Rodriguez</div>
-                        <div class="author-title">Botanical Enthusiast</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="faq-section" id="faq">
-        <div class="section-header">
-            <span class="section-tag">Questions & Answers</span>
-            <h2 class="section-title">Frequently Asked Questions</h2>
-            <p class="section-subtitle">Everything you need to know about Sprouts and plant care.</p>
-        </div>
-        <div class="faq-container">
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h3>Is Sprouts free to use?</h3>
-                    <div class="faq-icon">+</div>
-                </div>
-                <div class="faq-answer">
-                    <div class="faq-answer-content">
-                        Yes! Sprouts offers a free version with core features including watering reminders, basic plant care guides, and access to our community. We also offer Sprouts Premium with advanced features like detailed analytics, unlimited plant profiles, AI plant identification, and ad-free experience for $4.99/month or $39.99/year.
-                    </div>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h3>How does the smart watering system work?</h3>
-                    <div class="faq-icon">+</div>
-                </div>
-                <div class="faq-answer">
-                    <div class="faq-answer-content">
-                        Our AI-powered system considers multiple factors including plant species, pot size, soil type, local weather conditions, season, and your home environment. It learns from your input and adjusts reminders to ensure optimal watering schedules. You'll receive notifications at the perfect time, preventing both overwatering and underwatering.
-                    </div>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h3>Can I identify plants using the app?</h3>
-                    <div class="faq-icon">+</div>
-                </div>
-                <div class="faq-answer">
-                    <div class="faq-answer-content">
-                        Absolutely! With Sprouts Premium, you can use our AI-powered plant identification feature. Simply take a photo of any plant, and our advanced recognition system will identify it from our database of over 10,000 species. You'll instantly receive detailed care instructions and can add it to your collection with one tap.
-                    </div>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h3>What if I travel and can't water my plants?</h3>
-                    <div class="faq-icon">+</div>
-                </div>
-                <div class="faq-answer">
-                    <div class="faq-answer-content">
-                        Sprouts includes a "Travel Mode" feature! Before you leave, activate travel mode and specify your travel dates. The app will provide pre-travel care instructions, suggest which plants need extra attention, and can even recommend self-watering solutions. You can also share temporary access with friends or family who'll help care for your plants while you're away.
-                    </div>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h3>Does Sprouts work offline?</h3>
-                    <div class="faq-icon">+</div>
-                </div>
-                <div class="faq-answer">
-                    <div class="faq-answer-content">
-                        Yes! Once you've added your plants and downloaded their care guides, you can access basic features offline including viewing your plant collection, care schedules, and saved guides. Reminders will still function offline. However, features like plant identification, community access, and weather-based updates require an internet connection.
-                    </div>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h3>How do I cancel my Premium subscription?</h3>
-                    <div class="faq-icon">+</div>
-                </div>
-                <div class="faq-answer">
-                    <div class="faq-answer-content">
-                        You can cancel anytime directly from your device's subscription settings (App Store or Google Play). Your Premium features will remain active until the end of your billing period, and you won't be charged again. Even after canceling, you'll keep all your plant data and can continue using the free version of Sprouts.
-                    </div>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h3>Is my plant data backed up?</h3>
-                    <div class="faq-icon">+</div>
-                </div>
-                <div class="faq-answer">
-                    <div class="faq-answer-content">
-                        Yes! All your plant data, photos, notes, and care history are automatically backed up to the cloud. If you switch devices or reinstall the app, simply log in with your account and everything will be restored. We use encrypted storage to ensure your data is secure and private.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="stats-section">
-        <div class="stats-wrapper">
+    <section id="testimonials" class="testimonials">
+        <div class="container">
             <div class="section-header">
-                <h2 class="section-title" style="color: white;">Growing Together Worldwide</h2>
-                <p class="section-subtitle" style="color: rgba(255,255,255,0.95);">Join a thriving global community of plant lovers making the world greener, one leaf at a time.</p>
+                <h2 class="section-title">Reviews</h2>
+                <p class="section-subtitle">What people say about my work</p>
             </div>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-card-icon">👥</div>
-                    <div class="stat-number">50K+</div>
-                    <div class="stat-text">Active Users</div>
+            
+            <div class="testimonials-slider" id="testimonials-slider">
+                <div class="testimonial-item active">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star star"></i>
+                        <i class="fas fa-star star"></i>
+                        <i class="fas fa-star star"></i>
+                        <i class="fas fa-star star"></i>
+                        <i class="fas fa-star star"></i>
+                    </div>
+                    <p class="testimonial-content">"Working with this developer was a game-changer for our startup. The Sprouts app exceeded our expectations in every way. The attention to detail and user experience considerations were exceptional."</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="James Wilson" class="author-avatar">
+                        <div class="author-info">
+                            <h4>James Wilson</h4>
+                            <p>CEO at GreenTech Solutions</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-card-icon">🌱</div>
-                    <div class="stat-number">100K+</div>
-                    <div class="stat-text">Plants Thriving</div>
+
+                <div class="testimonial-item">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star star"></i>
+                        <i class="fas fa-star star"></i>
+                        <i class="fas fa-star star"></i>
+                        <i class="fas fa-star star"></i>
+                        <i class="fas fa-star star"></i>
+                    </div>
+                    <p class="testimonial-content">"The development process was smooth and professional. Regular updates and attention to our feedback made the collaboration fantastic. Our app's success is largely due to the excellent development work."</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Sarah Chen" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Sarah Chen</h4>
+                            <p>Product Manager, EcoLife</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-card-icon">⭐</div>
-                    <div class="stat-number">4.9</div>
-                    <div class="stat-text">Average Rating</div>
+
+                <div class="testimonial-item">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star star"></i>
+                        <i class="fas fa-star star"></i>
+                        <i class="fas fa-star star"></i>
+                        <i class="fas fa-star star"></i>
+                        <i class="fas fa-star star"></i>
+                    </div>
+                    <p class="testimonial-content">"The technical expertise and problem-solving skills are outstanding. Our app required complex features, and every challenge was handled with innovative solutions. The end result is a beautiful, high-performing app."</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Michael Rodriguez" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Michael Rodriguez</h4>
+                            <p>Technical Director, AppInnovate</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-card-icon">🏆</div>
-                    <div class="stat-number">15+</div>
-                    <div class="stat-text">Awards Won</div>
+
+                <div class="testimonial-item">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star star"></i>
+                        <i class="fas fa-star star"></i>
+                        <i class="fas fa-star star"></i>
+                        <i class="fas fa-star star"></i>
+                        <i class="fas fa-star star"></i>
+                    </div>
+                    <p class="testimonial-content">"The cross-platform expertise is remarkable. Our app works flawlessly on both iOS and Android, maintaining consistent performance and design. The attention to platform-specific best practices really shows."</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/28.jpg" alt="Emma Thompson" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Emma Thompson</h4>
+                            <p>UX Director, MobileFirst</p>
+                        </div>
+                    </div>
                 </div>
+            </div>
+            
+            <div class="slider-controls">
+                <button class="slider-btn prev" id="prev-testimonial">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="slider-dots" id="testimonial-dots"></div>
+                <button class="slider-btn next" id="next-testimonial">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
             </div>
         </div>
     </section>
 
-    <!-- Download Section -->
-    <section class="download-section" id="download">
-        <div class="download-wrapper">
-            <span class="section-tag" style="color: var(--primary-green);">Get Started Today</span>
-            <h2 class="section-title">Start Your Plant Journey</h2>
-            <p class="section-subtitle">Available on iOS and Android. Download now and get your first month of Premium free!</p>
-            <div class="store-buttons-container">
-                <button class="store-btn">
-                    <div class="store-btn-icon">🍎</div>
-                    <div class="store-btn-text">
-                        <span class="store-btn-label">Download on the</span>
-                        <div class="store-btn-name">App Store</div>
-                    </div>
-                </button>
-                <button class="store-btn">
-                    <div class="store-btn-icon">📱</div>
-                    <div class="store-btn-text">
-                        <span class="store-btn-label">Get it on</span>
-                        <div class="store-btn-name">Google Play</div>
-                    </div>
-                </button>
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Let's Work Together</h2>
+                <p class="section-subtitle">Have a mobile app idea? Let's bring it to life</p>
             </div>
-        </div>
-    </section>
-
-    <!-- Newsletter Section -->
-    <section class="newsletter-section">
-        <div class="newsletter-box">
-            <span class="section-tag">Stay Connected</span>
-            <h2 class="section-title">Get Expert Plant Care Tips</h2>
-            <p class="section-subtitle">Subscribe to receive weekly tips, seasonal guides, exclusive offers, and early access to new features.</p>
-            <form class="newsletter-form">
-                <input type="email" class="newsletter-email" placeholder="Enter your email address" required>
-                <button type="submit" class="newsletter-submit">Subscribe Now</button>
-            </form>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p>developer.aaqeel@gmail.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Location</h4>
+                            <p>Tokyo, Japan</p>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-dribbble"></i></a>
+                    </div>
+                </div>
+                
+                <form class="contact-form" id="contact-form">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" required>
+                        <label for="name">Full Name</label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" required>
+                        <label for="email">Email Address</label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="tel" id="phone" name="phone">
+                        <label for="phone">Phone Number</label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <select id="service" name="service" required>
+                            <option value="">Select Service</option>
+                            <option value="ios-app">iOS App Development</option>
+                            <option value="android-app">Android App Development</option>
+                            <option value="cross-platform">Cross-Platform App</option>
+                            <option value="consultation">Consultation</option>
+                        </select>
+                        <label for="service">Service Needed</label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                        <label for="message">Project Description</label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <span>Send Message</span>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
-        <div class="footer-grid">
-            <div class="footer-brand-section">
-                <div class="footer-logo-box">
-                    <div class="footer-logo">🌱</div>
-                    <div class="footer-brand-name">Sprouts</div>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-text">Dev<span class="accent">.</span></span>
                 </div>
-                <p class="footer-description">Your trusted companion for nurturing beautiful, healthy plants. Making plant care accessible, enjoyable, and rewarding for everyone, everywhere.</p>
-                <div class="social-links-container">
-                    <div class="social-link-btn">📘</div>
-                    <div class="social-link-btn">📷</div>
-                    <div class="social-link-btn">🐦</div>
-                    <div class="social-link-btn">▶️</div>
-                    <div class="social-link-btn">💬</div>
+                <p class="footer-text">Creating exceptional mobile experiences</p>
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#portfolio">Portfolio</a>
+                    <a href="#contact">Contact</a>
                 </div>
-            </div>
-            <div class="footer-column">
-                <h4>Product</h4>
-                <div class="footer-links-list">
-                    <a href="#features" class="footer-link">Features</a>
-                    <a href="#" class="footer-link">Pricing</a>
-                    <a href="#" class="footer-link">Premium</a>
-                    <a href="#" class="footer-link">Updates</a>
-                    <a href="#" class="footer-link">Roadmap</a>
+                <div class="footer-legal">
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <span class="separator">|</span>
+                    <a href="terms.html">Terms & Conditions</a>
                 </div>
             </div>
-            <div class="footer-column">
-                <h4>Support</h4>
-                <div class="footer-links-list">
-                    <a href="#" class="footer-link">Help Center</a>
-                    <a href="#" class="footer-link">Contact Us</a>
-                    <a href="#faq" class="footer-link">FAQ</a>
-                    <a href="#" class="footer-link">Community</a>
-                    <a href="#" class="footer-link">Tutorials</a>
-                </div>
-            </div>
-            <div class="footer-column">
-                <h4>Company</h4>
-                <div class="footer-links-list">
-                    <a href="#" class="footer-link">About Us</a>
-                    <a href="#" class="footer-link">Blog</a>
-                    <a href="#" class="footer-link">Careers</a>
-                    <a href="#" class="footer-link">Press Kit</a>
-                    <a href="#" class="footer-link">Partners</a>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom-bar">
-            <div class="footer-copyright">© 2025 Sprouts. All rights reserved. Made with 💚 for plant lovers.</div>
-            <div class="footer-legal">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-                <a href="#">Cookie Policy</a>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Mobile Developer Portfolio. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Scroll to Top Button -->
-    <div class="scroll-top" id="scrollTop">↑</div>
-
+    <!-- JavaScript will be added in next step -->
     <script>
-        // Navbar scroll effect
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // FAQ Accordion
-        const faqItems = document.querySelectorAll('.faq-item');
-        faqItems.forEach(item => {
-            const question = item.querySelector('.faq-question');
-            question.addEventListener('click', () => {
-                const isActive = item.classList.contains('active');
-                
-                // Close all items
-                faqItems.forEach(i => i.classList.remove('active'));
-                
-                // Open clicked item if it wasn't active
-                if (!isActive) {
-                    item.classList.add('active');
-                }
+        // Navigation and Scroll Handling
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Interactive Starfield
+            initializeStarfield();
+            
+            const navbar = document.getElementById('navbar');
+            const navToggle = document.getElementById('nav-toggle');
+            const navMenu = document.getElementById('nav-menu');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            // Mobile menu toggle
+            navToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                navToggle.classList.toggle('active');
             });
-        });
 
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    const offsetTop = target.offsetTop - 80;
-                    window.scrollTo({
-                        top: offsetTop,
-                        behavior: 'smooth'
+            // Close mobile menu when clicking on a link
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    navMenu.classList.remove('active');
+                    navToggle.classList.remove('active');
+                });
+            });
+
+            // Scroll handling for navbar and active sections
+            function handleScroll() {
+                const scrolled = window.scrollY > 50;
+                
+                // Update navbar appearance
+                if (scrolled) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+
+                // Update active navigation link
+                const sections = document.querySelectorAll('section[id]');
+                const scrollPosition = window.scrollY + 100; // Offset for navbar height
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    const sectionId = section.getAttribute('id');
+                    
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                        // Remove active class from all nav links
+                        navLinks.forEach(link => link.classList.remove('active'));
+                        
+                        // Add active class to current section's nav link
+                        const activeLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
+                        if (activeLink) {
+                            activeLink.classList.add('active');
+                        }
+                    }
+                });
+            }
+
+            // Throttled scroll handler for better performance
+            let ticking = false;
+            function scrollHandler() {
+                if (!ticking) {
+                    requestAnimationFrame(function() {
+                        handleScroll();
+                        ticking = false;
                     });
+                    ticking = true;
                 }
-            });
-        });
-
-        // Scroll to top button
-        const scrollTopBtn = document.getElementById('scrollTop');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 500) {
-                scrollTopBtn.classList.add('visible');
-            } else {
-                scrollTopBtn.classList.remove('visible');
             }
-        });
 
-        scrollTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+            window.addEventListener('scroll', scrollHandler);
 
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
+            // Smooth scroll for navigation links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+                    
+                    if (targetSection) {
+                        const offsetTop = targetSection.offsetTop - 80; // Account for fixed navbar
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+            // Initialize on page load
+            handleScroll();
+
+            // Testimonials Slider
+            const slider = document.getElementById('testimonials-slider');
+            const testimonials = slider.getElementsByClassName('testimonial-item');
+            const prevBtn = document.getElementById('prev-testimonial');
+            const nextBtn = document.getElementById('next-testimonial');
+            const dotsContainer = document.getElementById('testimonial-dots');
+            let currentIndex = 0;
+
+            // Create dots
+            for (let i = 0; i < testimonials.length; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'dot' + (i === 0 ? ' active' : '');
+                dot.addEventListener('click', () => goToSlide(i));
+                dotsContainer.appendChild(dot);
+            }
+
+            function updateSlider() {
+                // Update testimonials
+                for (let i = 0; i < testimonials.length; i++) {
+                    testimonials[i].classList.remove('active');
                 }
-            });
-        }, observerOptions);
+                testimonials[currentIndex].classList.add('active');
 
-        // Animate elements on scroll
-        document.querySelectorAll('.feature-item, .testimonial-item, .stat-card, .screenshot-item, .step-item').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(40px)';
-            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-            observer.observe(el);
-        });
-
-        // Newsletter form submission
-        document.querySelector('.newsletter-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Thank you for subscribing! 🌱 Check your email for confirmation.');
-            e.target.reset();
-        });
-
-        // Mobile menu toggle
-        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-        const navMenu = document.querySelector('.nav-menu');
-        
-        mobileMenuToggle.addEventListener('click', () => {
-            mobileMenuToggle.classList.toggle('active');
-            navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
-        });
-
-        // Canvas background animation
-        const canvas = document.querySelector('.bg-canvas');
-        const ctx = canvas.getContext('2d');
-        
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-        
-        const particles = [];
-        const particleCount = 50;
-        
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 3 + 1;
-                this.speedX = Math.random() * 0.5 - 0.25;
-                this.speedY = Math.random() * 0.5 - 0.25;
-                this.opacity = Math.random() * 0.3;
+                // Update dots
+                const dots = dotsContainer.getElementsByClassName('dot');
+                for (let i = 0; i < dots.length; i++) {
+                    dots[i].classList.remove('active');
+                }
+                dots[currentIndex].classList.add('active');
             }
+
+            function goToSlide(index) {
+                currentIndex = index;
+                updateSlider();
+            }
+
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % testimonials.length;
+                updateSlider();
+            }
+
+            function prevSlide() {
+                currentIndex = (currentIndex - 1 + testimonials.length) % testimonials.length;
+                updateSlider();
+            }
+
+            // Event listeners
+            prevBtn.addEventListener('click', prevSlide);
+            nextBtn.addEventListener('click', nextSlide);
+
+            // Auto slide every 5 seconds
+            setInterval(nextSlide, 5000);
+
+            // Initialize skill progress bars with animation on scroll
+            const skillBars = document.querySelectorAll('.skill-progress');
+            const observerOptions = {
+                threshold: 0.5,
+                rootMargin: '0px 0px -100px 0px'
+            };
+
+            const skillObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const skillBar = entry.target;
+                        const width = skillBar.getAttribute('data-width');
+                        skillBar.style.width = width;
+                        skillObserver.unobserve(skillBar); // Only animate once
+                    }
+                });
+            }, observerOptions);
+
+            skillBars.forEach(bar => {
+                bar.style.width = '0%'; // Start from 0
+                skillObserver.observe(bar);
+            });
+
+            // Animate stats when in view
+            const stats = document.querySelectorAll('.stat-number');
+            let statsAnimated = false;
+
+            const statsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !statsAnimated) {
+                        statsAnimated = true;
+                        animateStats();
+                        statsObserver.disconnect(); // Only animate once
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            if (stats.length > 0) {
+                statsObserver.observe(stats[0].closest('.hero-stats'));
+            }
+
+            function animateStats() {
+                stats.forEach(stat => {
+                    const target = parseFloat(stat.getAttribute('data-count'));
+                    const duration = 2000; // 2 seconds
+                    const start = performance.now();
+                    
+                    function updateStat(currentTime) {
+                        const elapsed = currentTime - start;
+                        const progress = Math.min(elapsed / duration, 1);
+                        
+                        // Easing function for smooth animation
+                        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+                        const current = target * easeOutQuart;
+                        
+                        if (target % 1 === 0) {
+                            stat.textContent = Math.floor(current);
+                        } else {
+                            stat.textContent = current.toFixed(1);
+                        }
+                        
+                        if (progress < 1) {
+                            requestAnimationFrame(updateStat);
+                        }
+                    }
+                    
+                    requestAnimationFrame(updateStat);
+                });
+            }
+
+            // Add scroll-triggered animations for other elements
+            const animatedElements = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .scale-in');
             
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
+            const animationObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        animationObserver.unobserve(entry.target); // Only animate once
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            animatedElements.forEach(element => {
+                animationObserver.observe(element);
+            });
+
+            // Advanced Scroll Effects
+            
+            // Scroll Progress Bar
+            const scrollProgressBar = document.getElementById('scroll-progress-bar');
+            
+            function updateScrollProgress() {
+                const scrolled = window.scrollY;
+                const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+                const progress = (scrolled / maxScroll) * 100;
+                scrollProgressBar.style.width = progress + '%';
+            }
+
+            // Parallax Effects
+            const parallaxElements = document.querySelectorAll('.parallax-bg');
+            
+            function updateParallax() {
+                const scrolled = window.scrollY;
                 
-                if (this.x > canvas.width) this.x = 0;
-                if (this.x < 0) this.x = canvas.width;
-                if (this.y > canvas.height) this.y = 0;
-                if (this.y < 0) this.y = canvas.height;
+                parallaxElements.forEach(element => {
+                    const speed = element.dataset.speed || 0.5;
+                    const yPos = -(scrolled * speed);
+                    element.style.setProperty('--scroll-offset', yPos + 'px');
+                });
             }
-            
-            draw() {
-                ctx.fillStyle = `rgba(52, 91, 73, ${this.opacity})`;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-        
-        for (let i = 0; i < particleCount; i++) {
-            particles.push(new Particle());
-        }
-        
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            particles.forEach(particle => {
-                particle.update();
-                particle.draw();
-            });
-            
-            requestAnimationFrame(animate);
-        }
-        
-        animate();
 
-        // Add hover effect to store buttons
-        document.querySelectorAll('.store-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                alert('App coming soon! Sign up for our newsletter to be notified at launch. 🌱');
+            // Stagger Animation Observer
+            const staggerItems = document.querySelectorAll('.stagger-item');
+            
+            const staggerObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            staggerItems.forEach(item => {
+                staggerObserver.observe(item);
+            });
+
+            // Text Reveal Animation
+            const textRevealElements = document.querySelectorAll('.text-reveal');
+            
+            const textRevealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.5
+            });
+
+            textRevealElements.forEach(element => {
+                textRevealObserver.observe(element);
+            });
+
+            // Reveal Up Animation
+            const revealUpElements = document.querySelectorAll('.reveal-up');
+            
+            const revealUpObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.3
+            });
+
+            revealUpElements.forEach(element => {
+                revealUpObserver.observe(element);
+            });
+
+            // Scroll Scale Effect for Hero Elements
+            const scrollScaleElements = document.querySelectorAll('.scroll-scale');
+            
+            function updateScrollScale() {
+                const scrolled = window.scrollY;
+                
+                scrollScaleElements.forEach(element => {
+                    const elementTop = element.offsetTop;
+                    const elementHeight = element.offsetHeight;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (scrolled + windowHeight > elementTop && scrolled < elementTop + elementHeight) {
+                        const progress = (scrolled + windowHeight - elementTop) / (windowHeight + elementHeight);
+                        const scale = 0.8 + (0.2 * progress);
+                        element.style.setProperty('--scale-factor', Math.min(scale, 1));
+                    }
+                });
+            }
+
+            // Magnetic Effect for Interactive Elements
+            const magneticElements = document.querySelectorAll('.magnetic');
+            
+            magneticElements.forEach(element => {
+                element.addEventListener('mousemove', (e) => {
+                    const rect = element.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    
+                    element.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px)`;
+                });
+                
+                element.addEventListener('mouseleave', () => {
+                    element.style.transform = 'translate(0px, 0px)';
+                });
+            });
+
+            // Enhanced Scroll Handler
+            function enhancedScrollHandler() {
+                if (!ticking) {
+                    requestAnimationFrame(function() {
+                        handleScroll();
+                        updateScrollProgress();
+                        updateParallax();
+                        updateScrollScale();
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            }
+
+            // Replace the existing scroll event listener
+            window.removeEventListener('scroll', scrollHandler);
+            window.addEventListener('scroll', enhancedScrollHandler);
+
+            // Initialize scroll effects
+            updateScrollProgress();
+            updateParallax();
+            updateScrollScale();
+
+            // Glow Effect Observer for enhanced visual feedback
+            const glowElements = document.querySelectorAll('.glow-on-scroll');
+            
+            const glowObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.3
+            });
+
+            glowElements.forEach(element => {
+                glowObserver.observe(element);
             });
         });
+
+        // Interactive Starfield Implementation
+        function initializeStarfield() {
+            const starfield = document.getElementById('starfield');
+            const cursorGlow = document.getElementById('cursor-glow');
+            const stars = [];
+            const constellationLines = [];
+            const numStars = 300; // Increased significantly for better coverage
+            
+            // Set starfield height to match document height
+            const documentHeight = Math.max(
+                document.body.scrollHeight,
+                document.body.offsetHeight,
+                document.documentElement.clientHeight,
+                document.documentElement.scrollHeight,
+                document.documentElement.offsetHeight
+            );
+            starfield.style.height = documentHeight + 'px';
+            
+            // Create stars
+            for (let i = 0; i < numStars; i++) {
+                createStar();
+            }
+            
+            // Create shooting stars periodically
+            setInterval(createShootingStar, 2000); // More frequent shooting stars
+            
+            // Mouse tracking for cursor glow and star interactions
+            document.addEventListener('mousemove', (e) => {
+                // Update cursor glow position
+                cursorGlow.style.left = e.clientX + 'px';
+                cursorGlow.style.top = e.clientY + 'px';
+                
+                // Interactive star effects
+                stars.forEach(star => {
+                    const rect = star.getBoundingClientRect();
+                    const starX = rect.left + rect.width / 2;
+                    const starY = rect.top + rect.height / 2;
+                    const distance = Math.sqrt(
+                        Math.pow(e.clientX - starX, 2) + Math.pow(e.clientY - starY, 2)
+                    );
+                    
+                    if (distance < 150) {
+                        const intensity = 1 - (distance / 150);
+                        star.style.opacity = Math.min(1, 0.8 + intensity);
+                        star.style.transform = `scale(${1 + intensity * 0.8})`;
+                        
+                        // Add stronger glow effect to nearby stars
+                        if (distance < 80) {
+                            star.style.boxShadow = `0 0 ${intensity * 20}px rgba(45, 212, 191, ${intensity}), 0 0 ${intensity * 40}px rgba(255, 255, 255, ${intensity * 0.5})`;
+                        }
+                    } else {
+                        star.style.opacity = '';
+                        star.style.transform = '';
+                        star.style.boxShadow = '';
+                    }
+                });
+                
+                // Show constellation lines near cursor
+                updateConstellations(e.clientX, e.clientY);
+            });
+            
+            // Hide cursor glow when mouse leaves window
+            document.addEventListener('mouseleave', () => {
+                cursorGlow.style.opacity = '0';
+            });
+            
+            document.addEventListener('mouseenter', () => {
+                cursorGlow.style.opacity = '1';
+            });
+            
+            function createStar() {
+                const star = document.createElement('div');
+                star.className = 'star ' + getRandomStarSize();
+                
+                // Random position
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                
+                // Random animation delay
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.animationDuration = (2 + Math.random() * 4) + 's';
+                
+                starfield.appendChild(star);
+                stars.push(star);
+                
+                return star;
+            }
+            
+            function getRandomStarSize() {
+                const rand = Math.random();
+                if (rand < 0.6) return 'small';
+                if (rand < 0.85) return 'medium';
+                return 'large';
+            }
+            
+            function createShootingStar() {
+                const shootingStar = document.createElement('div');
+                shootingStar.className = 'shooting-star';
+                
+                // Random starting position (top or left edge)
+                const side = Math.random() < 0.5 ? 'top' : 'left';
+                if (side === 'top') {
+                    shootingStar.style.left = Math.random() * 100 + '%';
+                    shootingStar.style.top = '-10px';
+                } else {
+                    shootingStar.style.left = '-10px';
+                    shootingStar.style.top = Math.random() * 100 + '%';
+                }
+                
+                // Random trail length
+                const trailLength = 30 + Math.random() * 50;
+                shootingStar.style.boxShadow = `${trailLength}px ${trailLength}px 10px rgba(255, 255, 255, 0.8), ${trailLength/2}px ${trailLength/2}px 20px rgba(45, 212, 191, 0.6)`;
+                
+                starfield.appendChild(shootingStar);
+                
+                // Remove after animation
+                setTimeout(() => {
+                    if (shootingStar.parentNode) {
+                        starfield.removeChild(shootingStar);
+                    }
+                }, 3000);
+            }
+            
+            function updateConstellations(mouseX, mouseY) {
+                // Clear existing constellation lines
+                constellationLines.forEach(line => {
+                    if (line.parentNode) {
+                        starfield.removeChild(line);
+                    }
+                });
+                constellationLines.length = 0;
+                
+                // Find nearby stars
+                const nearbyStars = stars.filter(star => {
+                    const rect = star.getBoundingClientRect();
+                    const starX = rect.left + rect.width / 2;
+                    const starY = rect.top + rect.height / 2;
+                    const distance = Math.sqrt(
+                        Math.pow(mouseX - starX, 2) + Math.pow(mouseY - starY, 2)
+                    );
+                    return distance < 150;
+                });
+                
+                // Connect nearby stars with lines
+                for (let i = 0; i < nearbyStars.length; i++) {
+                    for (let j = i + 1; j < nearbyStars.length; j++) {
+                        const star1 = nearbyStars[i];
+                        const star2 = nearbyStars[j];
+                        
+                        const rect1 = star1.getBoundingClientRect();
+                        const rect2 = star2.getBoundingClientRect();
+                        
+                        const x1 = rect1.left + rect1.width / 2;
+                        const y1 = rect1.top + rect1.height / 2;
+                        const x2 = rect2.left + rect2.width / 2;
+                        const y2 = rect2.top + rect2.height / 2;
+                        
+                        const distance = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+                        
+                        if (distance < 100) {
+                            createConstellationLine(x1, y1, x2, y2);
+                        }
+                    }
+                }
+            }
+            
+            function createConstellationLine(x1, y1, x2, y2) {
+                const line = document.createElement('div');
+                line.className = 'constellation-line';
+                
+                const length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+                const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
+                
+                line.style.width = length + 'px';
+                line.style.left = x1 + 'px';
+                line.style.top = y1 + 'px';
+                line.style.transform = `rotate(${angle}deg)`;
+                line.style.opacity = '1';
+                
+                starfield.appendChild(line);
+                constellationLines.push(line);
+            }
+            
+            // Parallax effect for stars based on scroll
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const parallax = scrolled * 0.05;
+                
+                // Update starfield container height to match document height
+                const documentHeight = Math.max(
+                    document.body.scrollHeight,
+                    document.body.offsetHeight,
+                    document.documentElement.clientHeight,
+                    document.documentElement.scrollHeight,
+                    document.documentElement.offsetHeight
+                );
+                starfield.style.height = documentHeight + 'px';
+                
+                stars.forEach((star, index) => {
+                    const speed = (index % 3 + 1) * 0.05;
+                    star.style.transform = `translateY(${parallax * speed}px)`;
+                });
+            });
+        }
     </script>
 </body>
 </html>
