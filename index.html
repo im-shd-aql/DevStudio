@@ -829,50 +829,83 @@
 
         /* Portfolio Section */
         .portfolio {
-            background: rgba(255, 255, 255, 0.01);
-            backdrop-filter: blur(1px);
+            background: var(--bg-primary);
+            position: relative;
+            overflow: hidden;
         }
         
         .apps-showcase {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .app-card {
-            background: var(--bg-primary);
-            border-radius: var(--border-radius-lg);
-            padding: 2rem;
-            box-shadow: var(--shadow-light);
-            margin-bottom: 3rem;
-            transition: var(--transition);
-            border: 1px solid var(--glass-border);
-        }
-
-        .app-card.featured {
-            border: 2px solid var(--primary-color);
-            box-shadow: 0 10px 40px rgba(45, 212, 191, 0.1);
-        }
-
-        .app-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-heavy);
-        }
-
-        .app-header {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
             position: relative;
         }
 
-        .app-icon {
-            width: 80px;
-            height: 80px;
-            border-radius: 18px;
+        /* Enhanced App Card */
+        .app-card-enhanced {
+            position: relative;
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            padding: 0;
+            margin-bottom: 5rem;
             overflow: hidden;
-            box-shadow: var(--shadow-medium);
+        }
+
+        .app-card-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(93, 234, 212, 0.08) 0%, rgba(192, 132, 252, 0.08) 100%);
+            border-radius: var(--border-radius-lg);
+            border: 1px solid rgba(93, 234, 212, 0.1);
+            backdrop-filter: blur(20px);
+            z-index: 1;
+        }
+
+        .app-card-content {
+            position: relative;
+            z-index: 2;
+            padding: 3rem;
+            border-radius: var(--border-radius-lg);
+        }
+
+        .app-header-enhanced {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+            align-items: flex-start;
+        }
+
+        .app-icon-container {
+            position: relative;
             flex-shrink: 0;
+        }
+
+        .app-icon-glow {
+            position: absolute;
+            inset: -12px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: 24px;
+            opacity: 0.3;
+            filter: blur(20px);
+            animation: pulse-glow 3s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.05); }
+        }
+
+        .app-icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 2px solid rgba(93, 234, 212, 0.2);
+            box-shadow: 0 20px 40px rgba(45, 212, 191, 0.15);
+            backdrop-filter: blur(10px);
+            background: linear-gradient(135deg, rgba(93, 234, 212, 0.1), rgba(192, 132, 252, 0.1));
         }
 
         .app-icon img {
@@ -881,1202 +914,670 @@
             object-fit: cover;
         }
 
-        .app-info {
+        .app-info-enhanced {
             flex: 1;
         }
 
+        .app-header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
         .app-name {
-            font-size: 1.75rem;
-            font-weight: 700;
+            font-size: 2.5rem;
+            font-weight: 800;
             color: var(--text-primary);
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
         }
 
         .app-tagline {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .app-rating {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .stars {
-            display: flex;
-            gap: 0.125rem;
-        }
-
-        .stars i {
-            color: #fbbf24;
-            font-size: 0.875rem;
-        }
-
-        .rating-text {
-            font-size: 0.875rem;
+            font-size: 1.125rem;
             color: var(--text-secondary);
             font-weight: 500;
         }
 
-        .app-badge {
-            position: absolute;
-            top: -0.5rem;
-            right: 0;
-            background: var(--gradient-primary);
+        .app-badge-premium {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
             color: white;
-            padding: 0.375rem 1rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
+            padding: 0.625rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            box-shadow: 0 8px 20px rgba(45, 212, 191, 0.25);
         }
 
-        .app-features {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
+        .app-badge-premium i {
+            font-size: 1rem;
         }
 
-        .feature-item {
+        .app-rating-enhanced {
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             gap: 1rem;
         }
 
-        .feature-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--gradient-primary);
-            border-radius: 10px;
+        .stars-container {
+            display: flex;
+            gap: 0.375rem;
+        }
+
+        .stars-container i {
+            color: #fbbf24;
+            font-size: 1rem;
+            filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));
+        }
+
+        .rating-value {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .rating-count {
+            font-size: 0.875rem;
+            color: var(--text-light);
+        }
+
+        .app-description-enhanced {
+            margin-bottom: 2.5rem;
+            max-width: 800px;
+        }
+
+        .app-description-enhanced p {
+            font-size: 1.0625rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        .app-features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: rgba(93, 234, 212, 0.04);
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(93, 234, 212, 0.1);
+        }
+
+        .feature-item-enhanced {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            transition: var(--transition);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+        }
+
+        .feature-item-enhanced:hover {
+            background: rgba(93, 234, 212, 0.08);
+            transform: translateX(8px);
+        }
+
+        .feature-icon-enhanced {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 1.125rem;
+            font-size: 1.5rem;
             flex-shrink: 0;
+            box-shadow: 0 8px 16px rgba(45, 212, 191, 0.2);
         }
 
-        .feature-text h4 {
+        .feature-item-enhanced h4 {
             font-size: 1rem;
-            font-weight: 600;
+            font-weight: 700;
             color: var(--text-primary);
             margin-bottom: 0.25rem;
         }
 
-        .feature-text p {
+        .feature-item-enhanced p {
             font-size: 0.875rem;
-            color: var(--text-secondary);
-            line-height: 1.5;
-        }
-
-        .app-stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
-            margin-bottom: 2rem;
-            padding: 1.5rem;
-            background: var(--bg-secondary);
-            border-radius: var(--border-radius);
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            display: block;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 0.25rem;
-        }
-
-        .stat-label {
-            font-size: 0.75rem;
             color: var(--text-light);
+        }
+
+        .app-stats-enhanced {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            gap: 1rem;
+            padding: 2.5rem 2rem;
+            background: linear-gradient(135deg, rgba(93, 234, 212, 0.08), rgba(192, 132, 252, 0.08));
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(93, 234, 212, 0.1);
+            margin-bottom: 2.5rem;
+        }
+
+        .stat-box-enhanced {
+            text-align: center;
+            flex: 1;
+        }
+
+        .stat-number-large {
+            font-size: 2.25rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label-small {
+            font-size: 0.875rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        .stat-divider {
+            width: 1px;
+            height: 60px;
+            background: rgba(93, 234, 212, 0.2);
+        }
+
+        .app-tech-enhanced {
+            margin-bottom: 2.5rem;
+        }
+
+        .tech-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1.25rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
-        .app-description {
-            margin-bottom: 2rem;
-        }
-
-        .app-description p {
-            color: var(--text-secondary);
-            line-height: 1.7;
-            font-size: 1rem;
-        }
-
-        .app-tech {
-            margin-bottom: 2rem;
-        }
-
-        .app-tech h4 {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 1rem;
-        }
-
-        .tech-badges {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .tech-badge {
-            background: var(--glass-bg);
-            color: var(--primary-color);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.875rem;
-            font-weight: 500;
-            border: 1px solid var(--glass-border);
-        }
-
-        .app-actions {
+        .tech-stack-enhanced {
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
         }
 
-        .store-btn {
-            display: flex;
+        .tech-badge-enhanced {
+            display: inline-flex;
             align-items: center;
-            gap: 0.75rem;
-            padding: 0.875rem 1.5rem;
-            border-radius: var(--border-radius);
-            text-decoration: none;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, rgba(93, 234, 212, 0.15), rgba(192, 132, 252, 0.15));
+            color: var(--primary-color);
+            padding: 0.625rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border: 1px solid rgba(93, 234, 212, 0.2);
             transition: var(--transition);
-            border: 2px solid var(--glass-border);
-            background: var(--bg-primary);
-            min-width: 160px;
+            cursor: default;
         }
 
-        .store-btn.android {
+        .tech-badge-enhanced:hover {
+            background: linear-gradient(135deg, rgba(93, 234, 212, 0.25), rgba(192, 132, 252, 0.25));
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(45, 212, 191, 0.15);
+        }
+
+        .app-actions-enhanced {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .store-btn-enhanced {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.125rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: var(--transition);
+            border: 2px solid;
+            background: var(--bg-primary);
+            min-width: 220px;
+            position: relative;
+            overflow: hidden;
+            group: store-button;
+        }
+
+        .store-btn-enhanced::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: inherit;
+            border-color: inherit;
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .store-btn-enhanced.android {
             border-color: #34a853;
             color: #34a853;
         }
 
-        .store-btn.android:hover {
-            background: #34a853;
-            color: white;
-            transform: translateY(-2px);
+        .store-btn-enhanced.android::before {
+            background: rgba(52, 168, 83, 0.1);
         }
 
-        .store-btn.ios {
+        .store-btn-enhanced.android:hover {
+            border-color: #34a853;
+            background: #34a853;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(52, 168, 83, 0.3);
+        }
+
+        .store-btn-enhanced.ios {
             border-color: #007aff;
             color: #007aff;
         }
 
-        .store-btn.ios:hover {
+        .store-btn-enhanced.ios::before {
+            background: rgba(0, 122, 255, 0.1);
+        }
+
+        .store-btn-enhanced.ios:hover {
+            border-color: #007aff;
             background: #007aff;
             color: white;
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(0, 122, 255, 0.3);
         }
 
-        .store-btn i {
-            font-size: 1.5rem;
+        .store-btn-icon {
+            font-size: 1.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
         }
 
-        .btn-content {
+        .store-btn-text {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-        }
-
-        .btn-label {
-            font-size: 0.75rem;
-            opacity: 0.8;
-        }
-
-        .btn-store {
-            font-size: 1rem;
-            font-weight: 600;
-        }
-
-        /* Coming Soon Section */
-        .coming-soon {
-            margin-top: 4rem;
-            text-align: center;
-        }
-
-        .coming-soon-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 2rem;
-        }
-
-        .coming-soon-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .coming-soon-card {
-            background: var(--bg-secondary);
-            padding: 2rem 1.5rem;
-            border-radius: var(--border-radius);
-            text-align: center;
-            transition: var(--transition);
-            border: 1px solid var(--glass-border);
-            position: relative;
-        }
-
-        .coming-soon-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-medium);
-        }
-
-        .coming-soon-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--gradient-primary);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1rem;
-            color: white;
-            font-size: 1.5rem;
-        }
-
-        .coming-soon-card h4 {
-            font-size: 1.125rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .coming-soon-card p {
-            color: var(--text-secondary);
-            font-size: 0.875rem;
-            margin-bottom: 1rem;
-        }
-
-        .status-badge {
-            padding: 0.375rem 0.75rem;
-            border-radius: 15px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .status-badge.developing {
-            background: rgba(34, 197, 94, 0.1);
-            color: #22c55e;
-        }
-
-        .status-badge.design {
-            background: rgba(168, 85, 247, 0.1);
-            color: #a855f7;
-        }
-
-        .status-badge.planning {
-            background: rgba(249, 115, 22, 0.1);
-            color: #f97316;
-        }
-
-        /* Responsive for Portfolio */
-        @media (max-width: 768px) {
-            .app-stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .app-actions {
-                flex-direction: column;
-            }
-
-            .store-btn {
-                justify-content: center;
-            }
-
-            .coming-soon-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Skills Section */
-        .skills {
-            background: rgba(250, 250, 250, 0.015);
-            backdrop-filter: blur(1px);
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .skill-category {
-            background: var(--bg-primary);
-            border-radius: var(--border-radius-lg);
-            padding: 2rem;
-            box-shadow: var(--shadow-light);
-        }
-
-        .skill-category h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            color: var(--text-primary);
-            text-align: center;
-        }
-
-        .skill-items {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .skill-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .skill-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--gradient-primary);
-            border-radius: var(--border-radius);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            flex-shrink: 0;
-        }
-
-        .skill-info {
             flex: 1;
         }
 
-        .skill-info h4 {
-            font-size: 1rem;
+        .store-label {
+            font-size: 0.75rem;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
             font-weight: 600;
-            margin-bottom: 0.5rem;
+        }
+
+        .store-name {
+            font-size: 1.0625rem;
+            font-weight: 700;
+        }
+
+        .store-arrow {
+            font-size: 1.125rem;
+            transition: transform 0.3s ease;
+        }
+
+        .store-btn-enhanced:hover .store-arrow {
+            transform: translateX(4px);
+        }
+
+        /* Coming Soon Enhanced */
+        .coming-soon-enhanced {
+            margin-top: 6rem;
+            padding-top: 4rem;
+            border-top: 1px solid rgba(93, 234, 212, 0.1);
+        }
+
+        .coming-soon-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .coming-soon-title-enhanced {
+            font-size: 2rem;
+            font-weight: 800;
             color: var(--text-primary);
+            margin-bottom: 0.75rem;
         }
 
-        .skill-bar {
-            height: 6px;
-            background: var(--glass-bg);
-            border-radius: 3px;
-            overflow: hidden;
-            position: relative;
+        .coming-soon-subtitle {
+            font-size: 1.0625rem;
+            color: var(--text-secondary);
         }
 
-        .skill-progress {
-            height: 100%;
-            background: var(--gradient-primary);
-            border-radius: 3px;
-            width: 0;
-            transition: width 1s ease-in-out;
-        }
-
-        .skill-percentage {
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-left: auto;
-        }
-
-        /* Testimonials Section */
-        .testimonials {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(1px);
-        }
-
-        .testimonials-slider {
-            max-width: 800px;
+        .coming-soon-featured {
+            max-width: 600px;
             margin: 0 auto;
             position: relative;
+            background: var(--bg-secondary);
+            border-radius: var(--border-radius-lg);
+            padding: 3rem 2.5rem;
+            transition: var(--transition);
+            border: 2px solid rgba(93, 234, 212, 0.1);
             overflow: hidden;
         }
 
-        .testimonial-item {
-            background: var(--bg-secondary);
-            border-radius: var(--border-radius-lg);
-            padding: 2rem;
-            text-align: center;
-            box-shadow: var(--shadow-light);
-            display: none;
-        }
-
-        .testimonial-item.active {
-            display: block;
-        }
-
-        .testimonial-content {
-            font-size: 1.125rem;
-            line-height: 1.7;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            font-style: italic;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-        }
-
-        .author-avatar {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
-        .author-info h4 {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 0.25rem;
-        }
-
-        .author-info p {
-            font-size: 0.875rem;
-            color: var(--text-light);
-        }
-
-        .testimonial-rating {
-            display: flex;
-            justify-content: center;
-            gap: 0.25rem;
-            margin-bottom: 1rem;
-        }
-
-        .star {
-            color: var(--accent-color);
-            font-size: 1.25rem;
-        }
-
-        .slider-controls {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .slider-btn {
-            width: 50px;
-            height: 50px;
-            background: var(--primary-color);
-            border: none;
-            border-radius: 50%;
-            color: white;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .slider-btn:hover {
-            background: var(--primary-dark);
-            transform: scale(1.1);
-        }
-
-        .slider-dots {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--glass-border);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .dot.active {
-            background: var(--primary-color);
-        }
-
-        /* Contact Section */
-        .contact {
-            background: rgba(250, 250, 250, 0.02);
-            backdrop-filter: blur(1px);
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .contact-content {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 4rem;
-            align-items: start;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .contact-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--gradient-primary);
-            border-radius: var(--border-radius);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.25rem;
-            flex-shrink: 0;
-        }
-
-        .contact-details h4 {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 0.25rem;
-        }
-
-        .contact-details p {
-            color: var(--text-secondary);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .social-link {
-            width: 50px;
-            height: 50px;
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: var(--border-radius);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .social-link:hover {
-            background: var(--primary-color);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        .contact-form {
-            background: var(--bg-primary);
-            border-radius: var(--border-radius-lg);
-            padding: 2rem;
-            box-shadow: var(--shadow-light);
-        }
-
-        .form-group {
-            position: relative;
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid var(--glass-border);
-            border-radius: var(--border-radius);
-            background: var(--bg-secondary);
-            color: var(--text-primary);
-            font-size: 1rem;
-            transition: var(--transition);
-            resize: vertical;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-        }
-
-        .form-group label {
+        .coming-soon-featured::before {
+            content: '';
             position: absolute;
-            top: 1rem;
-            left: 1rem;
-            color: var(--text-light);
-            font-size: 1rem;
-            transition: var(--transition);
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .coming-soon-featured:hover {
+            transform: translateY(-8px);
+            border-color: rgba(93, 234, 212, 0.3);
+            box-shadow: 0 20px 40px rgba(45, 212, 191, 0.1);
+        }
+
+        .coming-soon-featured:hover::before {
+            opacity: 1;
+        }
+
+        .card-glow-featured {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(93, 234, 212, 0.15), rgba(192, 132, 252, 0.15));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            border-radius: var(--border-radius-lg);
+            z-index: 0;
             pointer-events: none;
-            background: var(--bg-secondary);
-            padding: 0 0.5rem;
         }
 
-        .form-group input:focus + label,
-        .form-group input:not(:placeholder-shown) + label,
-        .form-group select:focus + label,
-        .form-group select:not([value=""]) + label,
-        .form-group textarea:focus + label,
-        .form-group textarea:not(:placeholder-shown) + label {
-            top: -0.5rem;
-            left: 0.75rem;
-            font-size: 0.875rem;
-            color: var(--primary-color);
+        .coming-soon-featured:hover .card-glow-featured {
+            opacity: 1;
         }
 
-        /* Footer */
-        .footer {
-            background: rgba(15, 23, 42, 0.9);
-            backdrop-filter: blur(10px);
-            color: white;
-            padding: 3rem 0 1rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .footer-content {
+        .card-content-featured {
+            position: relative;
+            z-index: 1;
             text-align: center;
-            margin-bottom: 2rem;
         }
 
-        .footer-logo .logo-text {
-            color: white;
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            display: inline-block;
-        }
-
-        .footer-text {
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 2rem;
-        }
-
-        .footer-links {
+        .coming-icon-box-featured {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: 20px;
             display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .footer-links a:hover {
-            color: var(--primary-light);
-        }
-
-        .footer-legal {
-            margin: 1.5rem 0;
-            display: flex;
-            justify-content: center;
             align-items: center;
-            gap: 1rem;
-            font-size: 0.875rem;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+            margin: 0 auto 2rem;
+            box-shadow: 0 15px 30px rgba(45, 212, 191, 0.25);
+            position: relative;
+            animation: float-icon 3s ease-in-out infinite;
         }
 
-        .footer-legal a {
-            color: var(--text-light);
-            transition: var(--transition);
-        }
-
-        .footer-legal a:hover {
-            color: var(--primary-light);
-        }
-
-        .footer-legal .separator {
-            color: var(--text-light);
-            opacity: 0.5;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 2rem;
-            text-align: center;
-        }
-
-        .footer-bottom p {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.875rem;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-menu {
-                position: fixed;
-                left: -100%;
-                top: 80px;
-                flex-direction: column;
-                background: rgba(15, 23, 42, 0.95);
-                backdrop-filter: blur(20px);
-                width: 100%;
-                text-align: center;
-                transition: 0.3s;
-                padding: 2rem 1rem;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-                border-radius: 0;
-                border: none;
-                gap: 0;
-            }
-
-            .nav-menu li {
-                margin: 0.5rem 0;
-            }
-
-            .nav-menu.active {
-                left: 0;
-            }
-
-            .nav-actions {
-                display: none;
-            }
-
-            .nav-toggle {
-                display: flex;
-            }
-
-            .nav-toggle.active .bar:nth-child(2) {
-                opacity: 0;
-            }
-
-            .nav-toggle.active .bar:nth-child(1) {
-                transform: translateY(6px) rotate(45deg);
-            }
-
-            .nav-toggle.active .bar:nth-child(3) {
-                transform: translateY(-6px) rotate(-45deg);
-            }
-
-            .hero-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 2rem;
-            }
-
-            .hero-visual {
-                order: -1;
-            }
-
-            .phone-frame {
-                width: 220px;
-                height: 440px;
-            }
-
-            .hero-stats {
-                justify-content: center;
-            }
-
-            .about-content,
-            .contact-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .portfolio-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .tech-stack {
-                grid-template-columns: repeat(4, 1fr);
-            }
-
-            .slider-controls {
-                gap: 1rem;
-            }
-
-            .container {
-                padding: 0 1rem;
-            }
-
-            section {
-                padding: 3rem 0;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-title {
-                font-size: 2rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1rem;
-            }
-
-            .hero-stats {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-            }
-
-            .tech-stack {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .phone-frame {
-                width: 180px;
-                height: 360px;
-            }
-
-            .floating-icons {
-                display: none;
-            }
-        }
-
-        /* Animation Classes */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .slide-in-left {
-            opacity: 0;
-            transform: translateX(-50px);
-            transition: all 0.8s ease-out;
-        }
-
-        .slide-in-left.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .slide-in-right {
-            opacity: 0;
-            transform: translateX(50px);
-            transition: all 0.8s ease-out;
-        }
-
-        .slide-in-right.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .scale-in {
-            opacity: 0;
-            transform: scale(0.8);
-            transition: all 0.8s ease-out;
-        }
-
-        .scale-in.visible {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        /* Enhanced Hover Effects */
-        .hover-lift {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .hover-lift:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(45, 212, 191, 0.2);
-        }
-
-        /* Glowing Elements */
-        .glow-on-scroll {
-            transition: box-shadow 0.3s ease;
-        }
-
-        .glow-on-scroll.visible {
-            box-shadow: 0 0 30px rgba(45, 212, 191, 0.3);
-        }
-
-        /* Enhanced Button Effects */
-        .magnetic {
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* Advanced Scroll Animations */
-        .parallax-bg {
-            transform: translateY(var(--scroll-offset, 0));
-            transition: transform 0.1s ease-out;
-        }
-
-        .stagger-item {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            transition-delay: var(--stagger-delay, 0s);
-        }
-
-        .stagger-item.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .reveal-up {
-            opacity: 0;
-            transform: translateY(60px) rotateX(20deg);
-            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .reveal-up.visible {
-            opacity: 1;
-            transform: translateY(0) rotateX(0deg);
-        }
-
-        .floating-element {
-            animation: float-gentle 6s ease-in-out infinite;
-        }
-
-        @keyframes float-gentle {
+        @keyframes float-icon {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
         }
 
-        .scroll-scale {
-            transform: scale(var(--scale-factor, 1));
-            transition: transform 0.1s ease-out;
+        .coming-soon-featured h3 {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
         }
 
-        .morphing-shape {
-            border-radius: var(--border-radius);
-            transition: border-radius 0.3s ease;
+        .coming-soon-featured p {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.7;
         }
 
-        .morphing-shape:hover {
-            border-radius: 50px;
+        .progress-section-featured {
+            margin-bottom: 2.5rem;
         }
 
-        /* Magnetic Effect */
-        .magnetic {
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
         }
 
-        /* Text Reveal Animation */
-        .text-reveal {
-            overflow: hidden;
-            position: relative;
+        .progress-stage {
+            font-size: 0.875rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
         }
 
-        .text-reveal .text-line {
-            display: block;
-            transform: translateY(100%);
-            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .text-reveal.visible .text-line {
-            transform: translateY(0);
-        }
-
-        /* Scroll Progress Indicator */
-        .scroll-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            z-index: 9999;
-            background: rgba(45, 212, 191, 0.1);
-        }
-
-        .scroll-progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-            width: 0%;
-            transition: width 0.1s ease;
-        }
-
-        /* Enhanced Hover Effects */
-        .hover-lift {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .hover-lift:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(45, 212, 191, 0.2);
-        }
-
-        /* Glowing Elements */
-        .glow-on-scroll {
-            transition: box-shadow 0.3s ease;
-        }
-
-        .glow-on-scroll.visible {
-            box-shadow: 0 0 30px rgba(45, 212, 191, 0.3);
-        }
-
-        /* Advanced Scroll Animations */
-        .parallax-bg {
-            transform: translateY(var(--scroll-offset, 0));
-            transition: transform 0.1s ease-out;
-        }
-
-        .stagger-item {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            transition-delay: var(--stagger-delay, 0s);
-        }
-
-        .stagger-item.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .reveal-up {
-            opacity: 0;
-            transform: translateY(60px) rotateX(20deg);
-            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .reveal-up.visible {
-            opacity: 1;
-            transform: translateY(0) rotateX(0deg);
-        }
-
-        .floating-element {
-            animation: float-gentle 6s ease-in-out infinite;
-        }
-
-        @keyframes float-gentle {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .scroll-scale {
-            transform: scale(var(--scale-factor, 1));
-            transition: transform 0.1s ease-out;
-        }
-
-        .morphing-shape {
-            border-radius: var(--border-radius);
-            transition: border-radius 0.3s ease;
-        }
-
-        .morphing-shape:hover {
-            border-radius: 50px;
-        }
-
-        /* Magnetic Effect */
-        .magnetic {
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* Text Reveal Animation */
-        .text-reveal {
-            overflow: hidden;
-            position: relative;
-        }
-
-        .text-reveal .text-line {
-            display: block;
-            transform: translateY(100%);
-            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .text-reveal.visible .text-line {
-            transform: translateY(0);
-        }
-
-        /* Scroll Progress Indicator */
-        .scroll-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            z-index: 9999;
-            background: rgba(45, 212, 191, 0.1);
-        }
-
-        .scroll-progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-            width: 0%;
-            transition: width 0.1s ease;
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--bg-secondary);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary-color);
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--primary-dark);
-        }
-
-        /* Loading Animation */
-        .loading {
-            opacity: 0;
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Glassmorphism Effects */
-        .glass {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        /* Gradient Text */
-        .gradient-text {
+        .progress-percent {
+            font-size: 1rem;
+            font-weight: 700;
             background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        /* Pulse Animation */
-        .pulse {
-            animation: pulse 2s infinite;
+        .progress-bar-featured {
+            width: 100%;
+            height: 8px;
+            background: rgba(93, 234, 212, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
         }
 
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
+        .progress-fill-featured {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            border-radius: 4px;
+            width: 65%;
+            position: relative;
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 10px rgba(45, 212, 191, 0.4);
+        }
+
+        .progress-fill-featured::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 20px;
+            background: radial-gradient(circle at right, rgba(45, 212, 191, 0.5), transparent);
+            animation: glow-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes glow-pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .features-list-featured {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            padding: 2rem;
+            background: rgba(93, 234, 212, 0.04);
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(93, 234, 212, 0.1);
+        }
+
+        .feature-item-featured {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .feature-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            flex-shrink: 0;
+            box-shadow: 0 0 8px rgba(45, 212, 191, 0.4);
+        }
+
+        .feature-text-featured {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .launch-date {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, rgba(93, 234, 212, 0.15), rgba(192, 132, 252, 0.15));
+            border: 1px solid rgba(93, 234, 212, 0.3);
+            border-radius: 50px;
+            color: var(--primary-color);
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 2rem;
+            animation: pulse-border 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-border {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(45, 212, 191, 0.3); }
+            50% { box-shadow: 0 0 0 8px rgba(45, 212, 191, 0); }
+        }
+
+        .cta-buttons-featured {
+            display: flex;
+            gap: 1rem;
+            flex-direction: column;
+        }
+
+        .btn-waitlist {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            text-align: center;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            box-shadow: 0 12px 24px rgba(45, 212, 191, 0.25);
+        }
+
+        .btn-waitlist:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 32px rgba(45, 212, 191, 0.35);
+        }
+
+        .btn-learn-more {
+            padding: 1rem 2rem;
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            border-radius: var(--border-radius);
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            text-align: center;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .btn-learn-more:hover {
+            background: rgba(45, 212, 191, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive for Coming Soon */
+        @media (max-width: 768px) {
+            .coming-soon-title-enhanced {
+                font-size: 1.5rem;
             }
-            50% {
-                transform: scale(1.05);
+
+            .coming-soon-featured {
+                padding: 2rem 1.5rem;
             }
-            100% {
-                transform: scale(1);
+
+            .coming-icon-box-featured {
+                width: 70px;
+                height: 70px;
+                font-size: 2rem;
+            }
+
+            .coming-soon-featured h3 {
+                font-size: 1.5rem;
+            }
+
+            .cta-buttons-featured {
+                flex-direction: column;
+            }
+
+            .btn-waitlist, .btn-learn-more {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .coming-soon-title-enhanced {
+                font-size: 1.25rem;
+            }
+
+            .coming-soon-featured {
+                padding: 1.5rem;
+            }
+
+            .coming-icon-box-featured {
+                width: 60px;
+                height: 60px;
+                font-size: 1.75rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .coming-soon-featured h3 {
+                font-size: 1.25rem;
+            }
+
+            .coming-soon-featured p {
+                font-size: 0.9rem;
+            }
+
+            .features-list-featured {
+                padding: 1.5rem;
+                gap: 0.75rem;
+            }
+
+            .btn-waitlist, .btn-learn-more {
+                padding: 0.875rem 1.5rem;
+                font-size: 0.85rem;
             }
         }
     </style>
@@ -2270,147 +1771,206 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title text-reveal">
-                    <span class="">Featured Apps</span>
+                    <span class="gradient-text">Featured Apps</span>
                 </h2>
-                <p class="section-subtitle fade-in">Successful mobile applications published on major app stores</p>
+                <p class="section-subtitle fade-in">Transforming ideas into exceptional mobile experiences</p>
             </div>
             
             <div class="apps-showcase">
-                <div class="app-card featured">
-                    <div class="app-header">
-                        <div class="app-icon">
-                            <img src="assets/sprouts_icon.png" alt="Sprouts App Icon">
-                        </div>
-                        <div class="app-info">
-                            <h3 class="app-name">Sprouts</h3>
-                            <p class="app-tagline">Plant Care Made Simple</p>
-                            <div class="app-rating">
-                                <div class="stars">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
+                <!-- Featured App Card -->
+                <div class="app-card featured app-card-enhanced">
+                    <div class="app-card-background"></div>
+                    <div class="app-card-content">
+                        <div class="app-header-enhanced">
+                            <div class="app-icon-container">
+                                <div class="app-icon-glow"></div>
+                                <div class="app-icon">
+                                    <img src="assets/sprouts_icon.png" alt="Sprouts App Icon">
                                 </div>
-                                <span class="rating-text">4.8 (500+ reviews)</span>
+                            </div>
+                            <div class="app-info-enhanced">
+                                <div class="app-header-top">
+                                    <div>
+                                        <h3 class="app-name">Sprouts</h3>
+                                        <p class="app-tagline">Plant Care Made Simple</p>
+                                    </div>
+                                    <div class="app-badge-premium">
+                                        <i class="fas fa-star"></i>
+                                        <span>Featured</span>
+                                    </div>
+                                </div>
+                                <div class="app-rating-enhanced">
+                                    <div class="stars-container">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <span class="rating-value">4.8</span>
+                                    <span class="rating-count">(500+ reviews)</span>
+                                </div>
                             </div>
                         </div>
-                        <div class="app-badge">
-                            <span class="badge-text">Featured</span>
+                        
+                        <div class="app-description-enhanced">
+                            <p>Sprouts revolutionizes plant care with intelligent AI-powered scheduling, personalized reminders, and comprehensive growth tracking. Perfect for both beginners and experienced gardeners.</p>
                         </div>
-                    </div>
-                    
-                    <div class="app-features">
-                        <div class="feature-item">
-                            <div class="feature-icon">
-                                <i class="fas fa-seedling"></i>
+                        
+                        <div class="app-features-grid">
+                            <div class="feature-item-enhanced">
+                                <div class="feature-icon-enhanced">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                                <div>
+                                    <h4>AI-Powered</h4>
+                                    <p>Smart care schedules</p>
+                                </div>
                             </div>
-                            <div class="feature-text">
-                                <h4>Smart Plant Care</h4>
-                                <p>AI-powered care schedules tailored to each plant species</p>
+                            <div class="feature-item-enhanced">
+                                <div class="feature-icon-enhanced">
+                                    <i class="fas fa-bell"></i>
+                                </div>
+                                <div>
+                                    <h4>Smart Reminders</h4>
+                                    <p>Never miss care</p>
+                                </div>
+                            </div>
+                            <div class="feature-item-enhanced">
+                                <div class="feature-icon-enhanced">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div>
+                                    <h4>Growth Tracking</h4>
+                                    <p>Progress insights</p>
+                                </div>
+                            </div>
+                            <div class="feature-item-enhanced">
+                                <div class="feature-icon-enhanced">
+                                    <i class="fas fa-leaf"></i>
+                                </div>
+                                <div>
+                                    <h4>Plant Database</h4>
+                                    <p>1000+ species</p>
+                                </div>
                             </div>
                         </div>
-                        <div class="feature-item">
-                            <div class="feature-icon">
-                                <i class="fas fa-bell"></i>
+                        
+                        <div class="app-stats-enhanced">
+                            <div class="stat-box-enhanced">
+                                <div class="stat-number-large">1K+</div>
+                                <div class="stat-label-small">Downloads</div>
                             </div>
-                            <div class="feature-text">
-                                <h4>Timely Reminders</h4>
-                                <p>Never miss watering or fertilizing again</p>
+                            <div class="stat-divider"></div>
+                            <div class="stat-box-enhanced">
+                                <div class="stat-number-large">4.1★</div>
+                                <div class="stat-label-small">Rating</div>
+                            </div>
+                            <div class="stat-divider"></div>
+                            <div class="stat-box-enhanced">
+                                <div class="stat-number-large">50+</div>
+                                <div class="stat-label-small">Reviews</div>
+                            </div>
+                            <div class="stat-divider"></div>
+                            <div class="stat-box-enhanced">
+                                <div class="stat-number-large">60+</div>
+                                <div class="stat-label-small">Countries</div>
                             </div>
                         </div>
-                        <div class="feature-item">
-                            <div class="feature-icon">
-                                <i class="fas fa-chart-line"></i>
+                        
+                        <div class="app-tech-enhanced">
+                            <h4 class="tech-title">Built With</h4>
+                            <div class="tech-stack-enhanced">
+                                <span class="tech-badge-enhanced">React Native</span>
+                                <span class="tech-badge-enhanced">Node.js</span>
+                                <span class="tech-badge-enhanced">MongoDB</span>
+                                <span class="tech-badge-enhanced">Firebase</span>
+                                <span class="tech-badge-enhanced">TensorFlow</span>
                             </div>
-                            <div class="feature-text">
-                                <h4>Growth Tracking</h4>
-                                <p>Monitor your plants' progress over time</p>
-                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="app-stats">
-                        <div class="stat-item">
-                            <div class="stat-number">10K+</div>
-                            <div class="stat-label">Downloads</div>
+                        
+                        <div class="app-actions-enhanced">
+                            <a href="https://play.google.com/store/apps/details?id=com.shahid.sprouts" class="store-btn-enhanced android" target="_blank">
+                                <div class="store-btn-icon">
+                                    <i class="fab fa-google-play"></i>
+                                </div>
+                                <div class="store-btn-text">
+                                    <span class="store-label">Get it on</span>
+                                    <span class="store-name">Google Play</span>
+                                </div>
+                                <i class="fas fa-arrow-right store-arrow"></i>
+                            </a>
+                            <a href="https://apps.apple.com/us/app/sprouts-plant-care-tracker/id6753816566" class="store-btn-enhanced ios" target="_blank">
+                                <div class="store-btn-icon">
+                                    <i class="fab fa-app-store-ios"></i>
+                                </div>
+                                <div class="store-btn-text">
+                                    <span class="store-label">Download on</span>
+                                    <span class="store-name">App Store</span>
+                                </div>
+                                <i class="fas fa-arrow-right store-arrow"></i>
+                            </a>
                         </div>
-                        <div class="stat-item">
-                            <div class="stat-number">4.8★</div>
-                            <div class="stat-label">Rating</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">500+</div>
-                            <div class="stat-label">Reviews</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">15</div>
-                            <div class="stat-label">Countries</div>
-                        </div>
-                    </div>
-                    
-                    <div class="app-description">
-                        <p>Sprouts revolutionizes plant care with intelligent scheduling, personalized reminders, and comprehensive growth tracking. Whether you're a beginner or experienced gardener, our AI-powered recommendations help your plants thrive.</p>
-                    </div>
-                    
-                    <div class="app-tech">
-                        <h4>Built With</h4>
-                        <div class="tech-badges">
-                            <span class="tech-badge">React Native</span>
-                            <span class="tech-badge">Node.js</span>
-                            <span class="tech-badge">MongoDB</span>
-                            <span class="tech-badge">Firebase</span>
-                            <span class="tech-badge">AI/ML</span>
-                        </div>
-                    </div>
-                    
-                    <div class="app-actions">
-                        <a href="https://play.google.com/store/apps/details?id=com.shahid.sprouts" class="store-btn android" target="_blank">
-                            <i class="fab fa-google-play"></i>
-                            <div class="btn-content">
-                                <span class="btn-label">Get it on</span>
-                                <span class="btn-store">Google Play</span>
-                            </div>
-                        </a>
-                        <a href="https://apps.apple.com/app/com.shahid.sprouts" class="store-btn ios" target="_blank">
-                            <i class="fab fa-app-store-ios"></i>
-                            <div class="btn-content">
-                                <span class="btn-label">Download on the</span>
-                                <span class="btn-store">App Store</span>
-                            </div>
-                        </a>
                     </div>
                 </div>
                 
-                <!-- Coming Soon Section -->
-                <div class="coming-soon">
-                    <h3 class="coming-soon-title">More Apps Coming Soon</h3>
-                    <div class="coming-soon-grid">
-                        <div class="coming-soon-card">
-                            <div class="coming-soon-icon">
+                <!-- Coming Soon Apps Grid -->
+                <div class="coming-soon-enhanced">
+                    <div class="coming-soon-header">
+                        <h3 class="coming-soon-title-enhanced">What's Coming Next</h3>
+                        <p class="coming-soon-subtitle">The next evolution in fitness tracking</p>
+                    </div>
+                    
+                    <div class="coming-soon-featured">
+                        <div class="card-glow-featured"></div>
+                        <div class="card-content-featured">
+                            <div class="coming-icon-box-featured">
                                 <i class="fas fa-dumbbell"></i>
                             </div>
-                            <h4>FitTracker Pro</h4>
-                            <p>Advanced fitness tracking</p>
-                            <span class="status-badge developing">In Development</span>
-                        </div>
-                        
-                        <div class="coming-soon-card">
-                            <div class="coming-soon-icon">
-                                <i class="fas fa-utensils"></i>
+
+                            <div class="launch-date">
+                                <span>🚀 Q1 2025</span>
                             </div>
-                            <h4>RecipeBox</h4>
-                            <p>Smart meal planning</p>
-                            <span class="status-badge design">Design Phase</span>
-                        </div>
-                        
-                        <div class="coming-soon-card">
-                            <div class="coming-soon-icon">
-                                <i class="fas fa-coins"></i>
+
+                            <h3>FitTracker Pro</h3>
+                            <p>Gamified fitness tracking that makes showing up feel like winning. AI-powered workouts, instant rewards, and habit formation engineered for consistency.</p>
+
+                            <div class="progress-section-featured">
+                                <div class="progress-label">
+                                    <span class="progress-stage">Development Progress</span>
+                                    <span class="progress-percent">65%</span>
+                                </div>
+                                <div class="progress-bar-featured">
+                                    <div class="progress-fill-featured"></div>
+                                </div>
                             </div>
-                            <h4>BudgetWise</h4>
-                            <p>Personal finance tracker</p>
-                            <span class="status-badge planning">Planning</span>
+
+                            <div class="features-list-featured">
+                                <div class="feature-item-featured">
+                                    <div class="feature-dot"></div>
+                                    <span class="feature-text-featured">Daily AI-generated workouts with zero decision making</span>
+                                </div>
+                                <div class="feature-item-featured">
+                                    <div class="feature-dot"></div>
+                                    <span class="feature-text-featured">XP system inspired by Duolingo's addictive design</span>
+                                </div>
+                                <div class="feature-item-featured">
+                                    <div class="feature-dot"></div>
+                                    <span class="feature-text-featured">Streak protection with intelligent rest day management</span>
+                                </div>
+                                <div class="feature-item-featured">
+                                    <div class="feature-dot"></div>
+                                    <span class="feature-text-featured">Real-time progress tracking with achievement badges</span>
+                                </div>
+                            </div>
+
+                            <div class="cta-buttons-featured">
+                                <a href="/fitness.html" class="btn-waitlist">
+                                    <i class="fas fa-arrow-right" style="margin-right: 0.5rem;"></i>
+                                    Join Beta Waitlist
+                                </a>
+                                <a href="/fitness.html" class="btn-learn-more">Learn More</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -3292,31 +2852,4 @@
                 line.style.transform = `rotate(${angle}deg)`;
                 line.style.opacity = '1';
                 
-                starfield.appendChild(line);
-                constellationLines.push(line);
-            }
-            
-            // Parallax effect for stars based on scroll
-            window.addEventListener('scroll', () => {
-                const scrolled = window.pageYOffset;
-                const parallax = scrolled * 0.05;
-                
-                // Update starfield container height to match document height
-                const documentHeight = Math.max(
-                    document.body.scrollHeight,
-                    document.body.offsetHeight,
-                    document.documentElement.clientHeight,
-                    document.documentElement.scrollHeight,
-                    document.documentElement.offsetHeight
-                );
-                starfield.style.height = documentHeight + 'px';
-                
-                stars.forEach((star, index) => {
-                    const speed = (index % 3 + 1) * 0.05;
-                    star.style.transform = `translateY(${parallax * speed}px)`;
-                });
-            });
-        }
-    </script>
-</body>
-</html>
+                starfield.appendChild(line);                constellationLines.push(line);            }                        // Parallax effect for stars based on scroll            window.addEventListener('scroll', () => {                const scrolled = window.pageYOffset;                const parallax = scrolled * 0.05;                                // Update starfield container height to match document height                const documentHeight = Math.max(                    document.body.scrollHeight,                    document.body.offsetHeight,                    document.documentElement.clientHeight,                    document.documentElement.scrollHeight,                    document.documentElement.offsetHeight                );                starfield.style.height = documentHeight + 'px';                                stars.forEach((star, index) => {                    const speed = (index % 3 + 1) * 0.05;                    star.style.transform = `translateY(${parallax * speed}px)`;                });            });        }    </script></body></html>
