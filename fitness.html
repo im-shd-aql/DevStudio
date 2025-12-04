@@ -571,40 +571,467 @@
         }
 
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2.8rem;
+            .container {
+                padding: 30px 15px;
             }
 
-            .hero-subtitle {
-                font-size: 1.1rem;
+            .navbar {
+                padding: 15px 0;
+                margin-bottom: 30px;
             }
 
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .cta-container {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .btn-primary, .btn-secondary {
-                width: 100%;
-                max-width: 300px;
+            .logo {
+                font-size: 1.2rem;
+                letter-spacing: 1px;
             }
 
             .nav-links {
                 display: none;
             }
 
+            h1 {
+                font-size: 2.8rem;
+                margin-bottom: 20px;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 30px;
+            }
+
+            .hero {
+                padding: 60px 15px 50px;
+            }
+
+            .badge {
+                padding: 6px 16px;
+                font-size: 0.75rem;
+                margin-bottom: 20px;
+            }
+
+            .cta-container {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 12px;
+                margin-top: 30px;
+            }
+
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                padding: 14px 30px;
+                font-size: 0.9rem;
+            }
+
+            .platforms {
+                gap: 15px;
+                margin-top: 20px;
+            }
+
+            .platform-badge {
+                padding: 6px 16px;
+                font-size: 0.8rem;
+            }
+
+            .problem-section {
+                margin: 80px auto;
+                padding: 0 15px;
+            }
+
+            .section-label {
+                font-size: 0.75rem;
+                margin-bottom: 15px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 20px;
+            }
+
+            .section-desc {
+                font-size: 1rem;
+                margin-bottom: 40px;
+            }
+
+            .problems-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                margin-top: 40px;
+            }
+
+            .problem-card {
+                padding: 30px 20px;
+                border-radius: 16px;
+            }
+
+            .problem-icon {
+                width: 44px;
+                height: 44px;
+                margin-bottom: 15px;
+                font-size: 1.25rem;
+            }
+
+            .problem-title {
+                font-size: 1.1rem;
+                margin-bottom: 12px;
+            }
+
+            .problem-desc {
+                font-size: 0.85rem;
+            }
+
+            .solution-section {
+                margin: 80px auto;
+                padding: 0 15px;
+            }
+
+            .solution-grid {
+                grid-template-columns: 1fr;
+                gap: 1px;
+            }
+
+            .solution-card {
+                padding: 35px 25px;
+            }
+
+            .solution-number {
+                font-size: 0.8rem;
+                margin-bottom: 12px;
+            }
+
+            .solution-title {
+                font-size: 1.4rem;
+                margin-bottom: 15px;
+            }
+
+            .solution-desc {
+                font-size: 0.9rem;
+                line-height: 1.6;
+            }
+
+            .gamification-section {
+                margin: 80px auto;
+                padding: 50px 20px;
+                border-radius: 24px;
+            }
+
             .game-features {
                 grid-template-columns: 1fr;
-                gap: 30px;
+                gap: 25px;
+                margin-top: 40px;
+            }
+
+            .game-icon {
+                width: 54px;
+                height: 54px;
+                margin-bottom: 15px;
+                font-size: 1.5rem;
+            }
+
+            .game-label {
+                font-size: 0.95rem;
+            }
+
+            .waitlist-section {
+                max-width: 100%;
+                margin: 80px auto;
+                padding: 50px 20px;
+                border-radius: 24px;
+            }
+
+            .waitlist-title {
+                font-size: 2.2rem;
+                margin-bottom: 15px;
+            }
+
+            .waitlist-subtitle {
+                font-size: 1rem;
+                margin-bottom: 30px;
+            }
+
+            .input-wrapper {
+                margin-bottom: 12px;
+            }
+
+            input {
+                padding: 14px 18px;
+                font-size: 0.9rem;
+            }
+
+            .submit-btn {
+                padding: 14px;
+                font-size: 0.9rem;
+                margin-top: 8px;
+            }
+
+            .success-message {
+                padding: 16px;
+                font-size: 0.9rem;
+                margin-top: 15px;
             }
 
             .waitlist-stats {
                 flex-direction: column;
-                gap: 30px;
+                gap: 25px;
+                margin-top: 35px;
+                padding-top: 30px;
+            }
+
+            .stat-value {
+                font-size: 2rem;
+                margin-bottom: 6px;
+            }
+
+            .stat-label {
+                font-size: 0.8rem;
+            }
+
+            footer {
+                padding: 40px 15px;
+                font-size: 0.8rem;
+                margin-top: 80px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px 12px;
+            }
+
+            .navbar {
+                padding: 12px 0;
+                margin-bottom: 20px;
+            }
+
+            .logo {
+                font-size: 1rem;
+                letter-spacing: 0.5px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+                line-height: 1.2;
+                margin-bottom: 15px;
+                letter-spacing: -0.5px;
+            }
+
+            .hero-subtitle {
+                font-size: 0.95rem;
+                margin-bottom: 20px;
+                line-height: 1.6;
+            }
+
+            .hero {
+                padding: 40px 12px 30px;
+            }
+
+            .badge {
+                padding: 5px 12px;
+                font-size: 0.7rem;
+                margin-bottom: 15px;
+                border-radius: 16px;
+            }
+
+            .cta-container {
+                gap: 10px;
+                margin-top: 20px;
+            }
+
+            .btn-primary, .btn-secondary {
+                padding: 12px 20px;
+                font-size: 0.85rem;
+                border-radius: 10px;
+            }
+
+            .platforms {
+                gap: 10px;
+                margin-top: 15px;
+                flex-wrap: wrap;
+            }
+
+            .platform-badge {
+                padding: 5px 12px;
+                font-size: 0.75rem;
+                border-radius: 8px;
+            }
+
+            .problem-section {
+                margin: 60px auto;
+            }
+
+            .section-label {
+                font-size: 0.7rem;
+                margin-bottom: 12px;
+                letter-spacing: 1px;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+                margin-bottom: 15px;
+                letter-spacing: -0.3px;
+            }
+
+            .section-desc {
+                font-size: 0.9rem;
+                margin-bottom: 30px;
+                line-height: 1.6;
+            }
+
+            .problems-grid {
+                gap: 15px;
+                margin-top: 30px;
+            }
+
+            .problem-card {
+                padding: 20px 16px;
+                border-radius: 12px;
+            }
+
+            .problem-icon {
+                width: 40px;
+                height: 40px;
+                margin-bottom: 12px;
+                font-size: 1.1rem;
+            }
+
+            .problem-title {
+                font-size: 1rem;
+                margin-bottom: 10px;
+            }
+
+            .problem-desc {
+                font-size: 0.8rem;
+                line-height: 1.5;
+            }
+
+            .solution-section {
+                margin: 60px auto;
+            }
+
+            .solution-card {
+                padding: 25px 16px;
+            }
+
+            .solution-number {
+                font-size: 0.75rem;
+                margin-bottom: 10px;
+            }
+
+            .solution-title {
+                font-size: 1.2rem;
+                margin-bottom: 12px;
+            }
+
+            .solution-desc {
+                font-size: 0.85rem;
+                line-height: 1.5;
+            }
+
+            .gamification-section {
+                margin: 60px auto;
+                padding: 35px 16px;
+                border-radius: 20px;
+            }
+
+            .game-features {
+                gap: 18px;
+                margin-top: 30px;
+            }
+
+            .game-icon {
+                width: 48px;
+                height: 48px;
+                margin-bottom: 12px;
+                font-size: 1.3rem;
+                border-radius: 12px;
+            }
+
+            .game-label {
+                font-size: 0.85rem;
+            }
+
+            .waitlist-section {
+                margin: 60px auto;
+                padding: 35px 16px;
+                border-radius: 20px;
+            }
+
+            .waitlist-title {
+                font-size: 1.8rem;
+                margin-bottom: 12px;
+            }
+
+            .waitlist-subtitle {
+                font-size: 0.9rem;
+                margin-bottom: 25px;
+                line-height: 1.5;
+            }
+
+            input {
+                padding: 12px 14px;
+                font-size: 0.85rem;
+                border-radius: 10px;
+            }
+
+            input::placeholder {
+                font-size: 0.85rem;
+            }
+
+            .submit-btn {
+                padding: 12px;
+                font-size: 0.85rem;
+                border-radius: 10px;
+                margin-top: 6px;
+            }
+
+            .success-message {
+                padding: 12px;
+                font-size: 0.85rem;
+                margin-top: 12px;
+                border-radius: 10px;
+            }
+
+            .waitlist-stats {
+                gap: 18px;
+                margin-top: 25px;
+                padding-top: 20px;
+            }
+
+            .stat-value {
+                font-size: 1.75rem;
+                margin-bottom: 4px;
+            }
+
+            .stat-label {
+                font-size: 0.75rem;
+            }
+
+            footer {
+                padding: 30px 12px;
+                font-size: 0.75rem;
+                margin-top: 60px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.9rem;
+            }
+
+            .section-title {
+                font-size: 1.3rem;
+            }
+
+            .waitlist-title {
+                font-size: 1.5rem;
+            }
+
+            .btn-primary, .btn-secondary {
+                padding: 10px 16px;
+                font-size: 0.8rem;
             }
         }
     </style>
